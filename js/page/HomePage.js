@@ -45,7 +45,7 @@ export default class HomePage extends Component<Props> {
           tabBarLabel:"收藏",
           tabBarIcon:({tintColor,focused}) => (
             <MaterialIcons
-              name={"favorite-border"}
+              name={"favorite"}
               size={26}
               style={{color:tintColor}}
             />
