@@ -2,7 +2,8 @@ import {
   createStackNavigator,
   createMaterialTopTabNavigator,
   createBottomTabNavigator,
-  createSwitchNavigator
+  createSwitchNavigator,
+  createAppContainer,
 } from "react-navigation";
 import WelcomePage from "../page/WelcomePage";
 import HomePage from "../page/HomePage";
@@ -32,11 +33,15 @@ const MainNavigator = createStackNavigator({
   }
 });
 
-export default createSwitchNavigator({
-  Init: InitNavigator,
-  Main: MainNavigator,
-},{
-  navigationOptions:{
-    header: null,// 隐藏顶部的导航
-  }
-})
+const loadingRoute = createAppContainer(
+  createSwitchNavigator({
+    Init: InitNavigator,
+    Main: MainNavigator,
+  },{
+    navigationOptions:{
+      header: null,// 隐藏顶部的导航
+    }
+  })
+);
+
+export default loadingRoute;

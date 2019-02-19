@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import {createBottomTabNavigator} from "react-navigation";
+import {createBottomTabNavigator,createAppContainer} from "react-navigation";
 import PopularPage from "../page/PopularPage";
 import TrendingPage from '../page/TrendingPage';
 import FavoritePage from "../page/FavoritePage";
@@ -68,7 +68,7 @@ export default class HomePage extends Component<Props> {
     })
   }
   render() {
-    const Tab = this._tabNavigator();
+    const Tab = createAppContainer(this._tabNavigator());
     return <Tab/>;
   }
 }

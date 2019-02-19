@@ -17,6 +17,6 @@ export default class NavigationUtil {
   static resetToHomePage(params){
     const {navigation} = params;
     navigation.goBack();
-    navigation.navigate.then("Main");
+    navigation.navigate("Main");
   }
 }
