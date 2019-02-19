@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import {createBottomTabNavigator} from "react-navigation";
-import PopularPage from "PopularPage";
-import TrendingPage from "TrendingPage";
-import FavoritePage from "FavoritePage";
-import MyPage from "MyPage";
+import PopularPage from "../page/PopularPage";
+import TrendingPage from '../page/TrendingPage';
+import FavoritePage from "../page/FavoritePage";
+import MyPage from "../page/MyPage";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Feather from "react-native-vector-icons/Feather";
 import AntDesign from "react-native-vector-icons/AntDesign";
