@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import {createMaterialTopTabNavigator,createAppContainer} from "react-navigation";
+import NavigationUtil from "../navigator/NavigationUtil"
+import DetailPage from "./DetailPage";
 
 type Props = {};
 export default class PopularPage extends Component<Props> {
@@ -33,6 +35,11 @@ class PopularTab extends Component<Props> {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>{tabLabel}</Text>
+        <Text onPress={() => {
+          NavigationUtil.goPage({
+            navigation: this.props.navigation
+          }, "DetailPage")
+        }}>跳转到详情页</Text>
       </View>
     );
   }

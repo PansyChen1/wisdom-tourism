@@ -8,6 +8,7 @@ import MyPage from "../page/MyPage";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Feather from "react-native-vector-icons/Feather";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import NavigationUtil from "../navigator/NavigationUtil";
 
 type Props = {};
 export default class HomePage extends Component<Props> {
@@ -68,6 +69,7 @@ export default class HomePage extends Component<Props> {
     })
   }
   render() {
+    NavigationUtil.navigation = this.props.navigation;
     const Tab = createAppContainer(this._tabNavigator());
     return <Tab/>;
   }
