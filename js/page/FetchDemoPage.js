@@ -7,9 +7,9 @@ type Props = {};
 export default class FetchDemoPage extends Component<Props> {
   constructor(props){
     super(props);
-    this.state({
-      showText: '',
-    })
+    this.state = {
+      showText: ''
+    }
   }
   loadData() {
     //https://api.github.com/search/repositories?q=java
@@ -61,7 +61,7 @@ export default class FetchDemoPage extends Component<Props> {
           <Button
             title="获取"
             onPress={() => {
-              this.loadData2();
+              this.loadData();
             }}
           />
         </View>

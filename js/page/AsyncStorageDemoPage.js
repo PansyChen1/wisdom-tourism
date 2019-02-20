@@ -5,26 +5,13 @@ import {connect} from "react-redux";
 
 type Props = {};
 const KEY = "save_key";
-export default class FetchDemoPage extends Component<Props> {
+export default class AsyncStorageDemoPage extends Component<Props> {
   constructor(props){
     super(props);
-    this.state({
-      showText: '',
-    })
+    this.state = {
+      showText: ''
+    }
   }
-  loadData() {
-    //https://api.github.com/search/repositories?q=java
-    let url = `https://api.github.com/search/repositories?q=${this.searchKey}`
-    fetch(url)
-    //将response转化为string
-      .then(response => response.text())
-      .then(responseText => {
-        this.setState({
-          showText: responseText,
-        })
-      })
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -39,15 +26,15 @@ export default class FetchDemoPage extends Component<Props> {
 
         <View style={styles.input_container}>
           <Text onPress={() => {
-            this.doSave()
+            this.doSave();
           }}>存储</Text>
 
           <Text onPress={() => {
-            this.doMove()
+            this.doRemove();
           }}>删除</Text>
 
           <Text onPress={() => {
-            this.getDate()
+            this.getDate();
           }}>获取</Text>
         </View>
         <Text>
@@ -56,11 +43,14 @@ export default class FetchDemoPage extends Component<Props> {
       </View>
     );
   }
-  doSave() {
+  /**
+   * 存储数据
+   * **/
+  async doSave() {
     //用法1
     AsyncStorage.setItem(KEY, this.value, error => {
       error && console.log(error.toString());
-    })
+    });
 
     // //用法2
     // AsyncStorage.setItem(KEY, this.value)
@@ -76,16 +66,34 @@ export default class FetchDemoPage extends Component<Props> {
     // }
   }
 
-  doMove() {
-    AsyncStorage.removeItem(KEY, this.value, error => {
+  async doRemove() {
+    AsyncStorage.removeItem(KEY, error => {
       error && console.log(error.toString());
-    })
+    });
   }
 
-  getDate() {
-    AsyncStorage.getItem(KEY, this.value, error => {
+  async getDate() {
+    AsyncStorage.getItem(KEY, (error, value) => {
+      this.setState({
+        showText: value
+      });
+      console.log(value);
       error && console.log(error.toString());
-    })
+    });
+
+    /**
+     * 用法二
+     * **/
+    // AsyncStorage.getItem(KEY)
+    //   .then(value => {
+    //     this.setState({
+    //       showText: value
+    //     });
+    //     console.log(value);
+    //   })
+    //   .catch(error => {
+    //     error && console.log(error.toString());
+    //   })
   }
 }
 
