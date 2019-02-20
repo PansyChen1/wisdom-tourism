@@ -8,7 +8,8 @@ import MyPage from "../page/MyPage";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import NavigationUtil from "../navigator/NavigationUtil";
-import {BottomTabBar} from 'react-navigation-tabs'
+import {BottomTabBar} from 'react-navigation-tabs';
+import {connect} from "react-redux";
 
 const TABS = {//配置跳转的路由
   PopularPage:{
@@ -65,22 +66,26 @@ const TABS = {//配置跳转的路由
   },
 }
 type Props = {};
-export default class DynamicTabNavigator extends Component<Props> {
+class DynamicTabNavigator extends Component<Props> {
   constructor(props){
     super(props);
     console.disableYellowBox = true;
   }
 
   _tabNavigator(){
+    if(this.Tabs) {
+      return this.Tabs;
+    }
     const {PopularPage, TrendingPage, FavoritePage, MyPage} = TABS;
     const tabs = {PopularPage, TrendingPage, FavoritePage, MyPage};//根据需要定制显示的tab
     // PopularPage.navigationOptions.tabBarLabel="最新";//动态修改tab的名称
-    return createAppContainer(createBottomTabNavigator(tabs, {
-      tabBarComponent: TabBarComponent
+    return this.Tabs = createAppContainer(createBottomTabNavigator(tabs, {
+      tabBarComponent: props => {
+        return <TabBarComponent theme={this.props.theme} {...props}/>
+      }
     }));
   }
   render() {
-    NavigationUtil.navigation = this.props.navigation;
     const Tab = createAppContainer(this._tabNavigator());
     return <Tab/>;
   }
@@ -95,31 +100,14 @@ class TabBarComponent extends React.Component{
     }
   }
   render() {
-    const {routes, index} = this.props.navigation.state;
-    if(routes[index].params) {
-      const {theme} = routes[index].params;
-      //以最新的更新时间为主，防止被其他tab之前的修改覆盖掉
-      if(theme && theme.updateTime > this.theme.updateTime) {
-        this.theme = theme;
-      }
-    }
     return <BottomTabBar
       {...this.props}
-      activeTintColor={this.theme.tintColor || this.props.activeTintColor}
+      activeTintColor={this.props.theme}
     />
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
+const mapStateToProps = state => ({
+  theme: state.theme.theme,
 });
+export default connect(mapStateToProps)(DynamicTabNavigator);

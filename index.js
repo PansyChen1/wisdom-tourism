@@ -4,8 +4,8 @@
  */
 
 import {AppRegistry} from 'react-native';
-import AppNavigator from './js/navigator/AppNavigators';
 import {name as appName} from './app.json';
+import App from './js/App';
 
 // 整个app的入口，链接到指定的js页面
-AppRegistry.registerComponent(appName, () => AppNavigator);
+AppRegistry.registerComponent(appName, () => App);
