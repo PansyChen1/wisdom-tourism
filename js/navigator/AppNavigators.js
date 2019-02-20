@@ -8,6 +8,7 @@ import {
 import WelcomePage from "../page/WelcomePage";
 import HomePage from "../page/HomePage";
 import DetailPage from "../page/DetailPage";
+import FetchDemoPage from "../page/FetchDemoPage";
 import {connect} from "react-redux";
 import {createReactNavigationReduxMiddleware, createReduxContainer} from "react-navigation-redux-helpers";
 
@@ -31,6 +32,12 @@ const MainNavigator = createStackNavigator({
   },
   DetailPage: {
     screen: DetailPage,
+    navigationOptions:{
+      // header: null,// 隐藏顶部的导航
+    }
+  },
+  FetchDemoPage: {
+    screen: FetchDemoPage,
     navigationOptions:{
       // header: null,// 隐藏顶部的导航
     }
