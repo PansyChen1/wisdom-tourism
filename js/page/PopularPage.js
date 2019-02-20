@@ -6,20 +6,34 @@ import DetailPage from "./DetailPage";
 
 type Props = {};
 export default class PopularPage extends Component<Props> {
+  constructor(props) {
+    super(props);
+    this.tabNames = ['景点', '美食', '特产', '民宿', '民俗'];
+  }
+  _genTabs() {
+    const tabs = {};
+    this.tabNames.forEach((item, index) => {
+      tabs[`tab${index}`] = {
+        //初始化页面，传递参数
+        screen: props => <PopularTab {...props} tabLabel={item}/>,
+        navigationOptions: {
+          title: item
+        }
+      }
+    });
+    return tabs;
+  }
   render() {
     const TabNavigator = createAppContainer(
-      createMaterialTopTabNavigator({
-        PopularTab1: {
-          screen: PopularTab,
-          navigationOptions: {
-            title: "111"
-          }
-        },
-        PopularTab2: {
-          screen: PopularTab,
-          navigationOptions: {
-            title: "222"
-          }
+      createMaterialTopTabNavigator(this._genTabs(), {
+        tabBarOptions: {
+          tabStyle: styles.tabStyle,
+          // scrollEnabled: true,//是否支持选项卡滚动
+          style: {
+            backgroundColor: '#678' //tabBar的背景色
+          },
+          indicatorStyle: styles.indicatorStyle,
+          labelStyle: styles.labelStyle
         }
       })
     );
@@ -52,9 +66,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  tabStyle: {
+    minWidth: 35
   },
+  indicatorStyle: {
+    height: 2,
+    backgroundColor: 'white'
+  },
+  labelStyle: {
+    fontSize: 13,
+    marginBottom: 6,
+    marginTop: 6
+  }
 });

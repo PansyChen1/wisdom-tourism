@@ -4594,7 +4594,7 @@ react-lifecycles-compat@^3.0.4:
   resolved "http://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha1-TxonOv38jzSIqMUWv9p4+HI1I2I=
 
-react-native-gesture-handler@~1.0.14:
+react-native-gesture-handler@^1.0.15, react-native-gesture-handler@~1.0.14:
   version "1.0.15"
   resolved "http://registry.npm.taobao.org/react-native-gesture-handler/download/react-native-gesture-handler-1.0.15.tgz#7e0d0a457820a3c9325a3d492daaed14400508a6"
   integrity sha1-fg0KRXggo8kyWj1JLartFEAFCKY=
@@ -4702,7 +4702,7 @@ react-navigation-stack@1.0.10:
   resolved "http://registry.npm.taobao.org/react-navigation-stack/download/react-navigation-stack-1.0.10.tgz#cf1f4f222bddbfae134cfb28362bafd42a64c485"
   integrity sha1-zx9PIivdv64TTPsoNiuv1CpkxIU=
 
-react-navigation-tabs@1.0.2:
+react-navigation-tabs@1.0.2, react-navigation-tabs@^1.0.2:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/react-navigation-tabs/download/react-navigation-tabs-1.0.2.tgz#cc6c61db0c61054388ef6f726a8ffc183d6095b5"
   integrity sha1-zGxh2wxhBUOI729yao/8GD1glbU=
