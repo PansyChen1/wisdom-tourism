@@ -69,7 +69,7 @@ class PopularTab extends Component<Props> {
     return URL + key + QUERY_STR;
   }
 
-  renderItem() {
+  renderItem(data) {
     const item = data.item;
     return <View style={{marginBottom: 10}}>
       <Text style={{backgroundColor: "#faa"}}>
@@ -80,7 +80,7 @@ class PopularTab extends Component<Props> {
   render() {
     const {popular} = this.props;
     let store = popular[this.storeName];//动态获取state
-    if (!state) {
+    if (!store) {
       store = {
         items: [],
         isLoading: false,
