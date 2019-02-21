@@ -17,8 +17,8 @@ export function onLoadPopularData(storeName, url) {
       })
       .catch(error => {
         console.log(error);
-        dispatch({type: Types.LOAD_POPULAR_FAIL, storeName});
-      })
+        dispatch({type: Types.LOAD_POPULAR_FAIL, storeName, error});
+      });
 
   }
 }
