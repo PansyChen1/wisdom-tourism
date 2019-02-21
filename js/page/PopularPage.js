@@ -6,6 +6,7 @@ import DetailPage from "./DetailPage";
 import {connect} from "react-redux";
 import action from "../action/index";
 import actions from "../action/index";
+import PopularItem from "../common/PopularItem";
 
 const URL = "https://api.github.com/search/repositories?q=";
 const QUERY_STR = "&sort=stars";
@@ -71,11 +72,12 @@ class PopularTab extends Component<Props> {
 
   renderItem(data) {
     const item = data.item;
-    return <View style={{marginBottom: 10}}>
-      <Text style={{backgroundColor: "#faa"}}>
-        {JSON.stringify(item)}
-      </Text>
-    </View>
+    return <PopularItem
+      item={item}
+      onSelect={() => {
+
+      }}
+    />
   }
   render() {
     const {popular} = this.props;
@@ -120,9 +122,6 @@ const PopularTabPage = connect(mapStateToProps, mapDispatchToProps)(PopularTab);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
   tabStyle: {
     minWidth: 35
