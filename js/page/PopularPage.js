@@ -8,10 +8,11 @@ import action from "../action/index";
 import actions from "../action/index";
 import PopularItem from "../common/PopularItem";
 import Toast from "react-native-easy-toast";
+import NavigationBar from "../common/NavigationBar";
 
 const URL = "https://api.github.com/search/repositories?q=";
 const QUERY_STR = "&sort=stars";
-const TITLE_COLOR = "red";
+const TITLE_COLOR = "#678";
 
 type Props = {};
 export default class PopularPage extends Component<Props> {
@@ -35,6 +36,17 @@ export default class PopularPage extends Component<Props> {
   }
 
   render() {
+    let statusBar = {
+      backgroundColor: TITLE_COLOR,
+      barStyle: "light-content",
+    }
+
+    let navigationBar = <NavigationBar
+      title={"旅游信息"}
+      statusBar={statusBar}
+      style={{backgroundColor: TITLE_COLOR}}
+    />
+
     const TabNavigator = createAppContainer(
       createMaterialTopTabNavigator(this._genTabs(), {
         tabBarOptions: {
@@ -49,6 +61,7 @@ export default class PopularPage extends Component<Props> {
       })
     );
     return <View style={{flex: 1}}>
+      {navigationBar}
       <TabNavigator/>
     </View>
   }
