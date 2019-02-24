@@ -1,6 +1,18 @@
 import {AsyncStorage} from "react-native";
 import Trending from 'GitHubTrending';
-export const FLAG_STORAGE = {flag_popular: 'popular', flag_trending: 'trending'};
+export const FLAG_STORAGE = {
+  flag_popular: {
+    self: 'popular',
+    other: {
+      flag_attraction: 'attraction',
+      flag_food: 'food',
+      flag_specialty: 'specialty',
+      flag_house: 'house',
+      flag_custom: 'custom',
+    }
+  },
+  flag_trending: 'trending',
+};
 
 export default class DataStore {
   /**

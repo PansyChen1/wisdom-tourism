@@ -124,12 +124,12 @@ class PopularTab extends Component<Props> {
       onSelect={(callback) => {
         NavigationUtil.goPage({
           projectModel: item,
-          flag: FLAG_STORAGE.flag_popular,
+          flag: FLAG_STORAGE.flag_popular.self,
           callback,
         }, 'DetailPage')
       }}
       onFavorite={(item, isFavorite) => {
-        FavoriteUtil.onFavorite(favoriteDao, item, isFavorite, FLAG_STORAGE.flag_popular)
+        FavoriteUtil.onFavorite(favoriteDao, item, isFavorite, FLAG_STORAGE.flag_popular.self)
       }}
     />
   }
