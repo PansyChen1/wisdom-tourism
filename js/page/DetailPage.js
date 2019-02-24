@@ -5,6 +5,7 @@ import ViewUtil from "../util/ViewUtil";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import NavigationUtil from "../navigator/NavigationUtil";
 import BackPressComponent from "../common/BackPressComponent";
+import FavoriteDao from "../expand/dao/FavoriteDao";
 
 const TRENDING_URL = "https://github.com/";
 type Props = {};
@@ -14,7 +15,8 @@ export default class DetailPage extends Component<Props> {
     super(props);
     //从导航器中将params取出
     this.params = this.props.navigation.state.params;
-    const {projectModel} = this.params;
+    const {projectModel, flag} = this.params;
+    this.favoriteDao = new FavoriteDao(flag);
     // this.url = projectModel.html_url || TRENDING_URL + projectModel.fullName;
     // const title = projectModel.full_name || projectModel.fullName;
     const title = "test";
@@ -23,6 +25,7 @@ export default class DetailPage extends Component<Props> {
       title: title,
       url: this.url,
       canGoBack: false,
+      isFavorite: projectModel.isFavorite,
     };
     this.backPress = new BackPressComponent({backPress: () => this.onBackPress()});
   }
@@ -50,15 +53,31 @@ export default class DetailPage extends Component<Props> {
     }
   }
 
+  onFavoriteButtonClick() {
+    const {projectModel, callback} = this.params;
+    const isFavorite = projectModel.isFavorite = !projectModel.isFavorite;
+    callback(isFavorite);//实时更新Item的状态
+    this.setState({
+      isFavorite: isFavorite,
+    });
+
+    let key = projectModel.item.fullName ? projectModel.item.fullName : projectModel.item.id.toString();
+    if (projectModel.isFavorite) {
+      this.favoriteDao.saveFavoriteItem(key, JSON.stringify(projectModel.item));
+    } else {
+      this.favoriteDao.removeFavoriteItem(key);
+    }
+  }
+
   renderRightButton() {
     return (<View style={{flexDirection: "row"}}>
       <TouchableOpacity
         onPress={() => {
-
+          this.onFavoriteButtonClick()
         }}
       >
         <FontAwesome
-          name={"star-o"}
+          name={this.state.isFavorite ? "star" : "star-o"}
           size={20}
           style={{color: "white", marginRight: 10, marginTop: 8}}
         />
