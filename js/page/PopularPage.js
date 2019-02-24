@@ -9,6 +9,7 @@ import actions from "../action/index";
 import PopularItem from "../common/PopularItem";
 import Toast from "react-native-easy-toast";
 import NavigationBar from "../common/NavigationBar";
+import {DeviceInfo}from 'react-native';
 
 const URL = "https://api.github.com/search/repositories?q=";
 const QUERY_STR = "&sort=stars";
@@ -60,7 +61,7 @@ export default class PopularPage extends Component<Props> {
         }
       })
     );
-    return <View style={{flex: 1}}>
+    return <View style={{flex: 1, marginTop: DeviceInfo.isIPhoneX_deprecated ? 30 : 0}}>
       {navigationBar}
       <TabNavigator/>
     </View>
@@ -102,7 +103,7 @@ class PopularTab extends Component<Props> {
       store = {
         items: [],
         isLoading: false,
-        projectModes: [],//要显示的数据
+        projectModels: [],//要显示的数据
         hideLoadingMore: true, //默认隐藏加载更多
       }
     }
@@ -118,7 +119,7 @@ class PopularTab extends Component<Props> {
       item={item}
       onSelect={() => {
         NavigationUtil.goPage({
-          projectModes: item
+          projectModels: item
         }, 'DetailPage')
       }}
     />
@@ -139,7 +140,7 @@ class PopularTab extends Component<Props> {
     return (
       <View style={styles.container}>
         <FlatList
-          data={store.projectModes}
+          data={store.projectModels}
           renderItem={data => this.renderItem(data)}
           keyExtractor={item => "" + item.id}
           refreshControl={
@@ -191,7 +192,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   tabStyle: {
-    minWidth: 35
+    //fix 会导致在android手机上列表加载慢
+    // minWidth: 35
   },
   indicatorStyle: {
     height: 2,

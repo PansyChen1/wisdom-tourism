@@ -14,14 +14,20 @@ import {BackHandler} from "react-native";//处理物理返回键
 import {NavigationActions} from "react-navigation";
 import actions from "../action";
 import {connect} from "react-redux";
+import BackPressComponent from "../common/BackPressComponent";
 
 type Props = {};
 class HomePage extends Component<Props> {
+  constructor(props) {
+    super(props);
+    this.backPress = new BackPressComponent({backPress: this.onBackPress()});
+  }
+
   componentDidMount() {
-    BackHandler.addEventListener("hardwareBackPress", this.onBackPress)
+    this.backPress.componentDidMount();
   }
   componentWillUnmount() {
-    BackHandler.removeEventListener("hardwareBackPress", this.onBackPress)
+    this.backPress.componentWillUnmount();
   }
 
   /**
