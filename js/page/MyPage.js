@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
-import {Button, Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {Button, Platform, StyleSheet, Text, View, TouchableOpacity, ScrollView} from 'react-native';
 import actions from "../action";
 import {connect} from "react-redux";
 import NavigationUtil from "../navigator/NavigationUtil";
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import NavigationBar from "../common/NavigationBar";
+import {MORE_MENU} from "../common/MORE_MENU";
+import GlobalStyles from "../res/styles/GlobalStyles";
 
 const THEME_COLOR = "#678"
 type Props = {};
-class MyPage extends Component<Props> {
+export default class MyPage extends Component<Props> {
 
   getRightButton() {
     return <View style={{flexDirection: "row"}}>
@@ -25,6 +27,14 @@ class MyPage extends Component<Props> {
             style={{color: "white"}}
           />
         </View>
+        <Ionicons
+          name={'ios-arrow-forward'}
+          size={16}
+          style={{
+            marginRight: 10,
+            alignSelf: 'center',
+            color: THEME_COLOR,
+          }}/>
       </TouchableOpacity>
     </View>
   }
@@ -40,6 +50,10 @@ class MyPage extends Component<Props> {
         style={{color: "white"}}
       />
     </TouchableOpacity>
+  }
+
+  onClick(menu) {
+
   }
 
   render() {
@@ -58,39 +72,58 @@ class MyPage extends Component<Props> {
     return (
       <View style={styles.container}>
         {navigationBar}
-        <Text style={styles.welcome}>MyPage</Text>
-        <Button
-          title="改变主题颜色"
-          onPress={() => {
-            this.props.onThemeChange('#826')
-          }}
-        />
-        <Text onPress={() => {
-          NavigationUtil.goPage({
-            navigation: this.props.navigation
-          }, "DetailPage")
-        }}>跳转到详情页</Text>
-        <Button
-          title={"Fetch使用"}
-          onPress={() => {
-            NavigationUtil.goPage({
-              navigation: this.props.navigation
-            }, "FetchDemoPage")
-          }}/>
-        <Button
-          title={"AsyncStorage使用"}
-          onPress={() => {
-            NavigationUtil.goPage({
-              navigation: this.props.navigation
-            }, "AsyncStorageDemoPage")
-          }}/>
-        <Button
-          title={"离线缓存框架"}
-          onPress={() => {
-            NavigationUtil.goPage({
-              navigation: this.props.navigation
-            }, "DataStoreDemoPage")
-          }}/>
+
+        <ScrollView>
+          <TouchableOpacity
+            onPress={() => this.onClick(MORE_MENU.About)}
+          >
+            <View style={styles.about_left}>
+              <Ionicons
+                name={MORE_MENU.About.name}
+                size={40}
+                style={{
+                  marginRight: 10,
+                  color: THEME_COLOR
+                }}
+              />
+              <Text>用户名</Text>
+            </View>
+          </TouchableOpacity>
+
+          <View style={GlobalStyles.line}/>
+          <Text>{MORE_MENU.Tutorial.name}</Text>
+          {/*趋势管理*/}
+          <Text style={styles.groupTitle}>趋势管理</Text>
+          {/*自定义语言*/}
+          <Text>{MORE_MENU.Custom_Language.name}</Text>
+          {/*语言排序*/}
+          <View style={GlobalStyles.line}/>
+          <Text>{MORE_MENU.Sort_Language.name}</Text>
+
+          {/*最热管理*/}
+          <Text style={styles.groupTitle}>最热管理</Text>
+          {/*自定义标签*/}
+          <Text>{MORE_MENU.Custom_Key.name}</Text>
+          {/*标签排序*/}
+          <View style={GlobalStyles.line}/>
+          <Text>{MORE_MENU.Sort_Key.name}</Text>
+          {/*标签移除*/}
+          <View style={GlobalStyles.line}/>
+          <Text>{MORE_MENU.Remove_Key.name}</Text>
+
+          {/*设置*/}
+          <Text style={styles.groupTitle}>设置</Text>
+          {/*自定义主题*/}
+          <Text>{MORE_MENU.Custom_Theme.name}</Text>
+          {/*关于作者*/}
+          <View style={GlobalStyles.line}/>
+          <Text>{MORE_MENU.About_Author.name}</Text>
+          <View style={GlobalStyles.line}/>
+          {/*反馈*/}
+          <Text>{MORE_MENU.Feedback.name}</Text>
+          <View style={GlobalStyles.line}/>
+          <Text>{MORE_MENU.CodePush.name}</Text>
+        </ScrollView>
       </View>
     )
   }
@@ -101,11 +134,34 @@ const styles = StyleSheet.create({
     flex: 1,
     // marginTop: 30
   },
+  about_left: {
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  item: {
+    backgroundColor: 'white',
+    padding: 10,
+    height: 90,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row'
+  },
+  groupTitle: {
+    marginLeft: 10,
+    marginTop: 10,
+    marginBottom: 5,
+    fontSize: 12,
+    color: 'gray'
+  }
 });
 
-const mapStateToProps = state => ({});
-
-const mapDispatchToProps = dispatch => ({
-  onThemeChange: theme => dispatch(actions.onThemeChange(theme))
-});
-export default connect(mapStateToProps, mapDispatchToProps)(MyPage);
+// const mapStateToProps = state => ({
+//   theme: state.theme.theme,
+// });
+//
+// const mapDispatchToProps = dispatch => ({
+//   onShowCustomThemeView: (show) => dispatch(actions.onShowCustomThemeView(show)),
+// });
+//
+// //注意：connect只是个function，并不应定非要放在export后面
+// export default connect(mapStateToProps, mapDispatchToProps)(MyPage);
