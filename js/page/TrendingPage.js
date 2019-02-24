@@ -103,7 +103,7 @@ class TrendingTab extends Component<Props> {
         items: [],
         isLoading: false,
         projectModels: [],//要显示的数据
-        hideLoadingMore: true, //默认隐藏加载更多
+        hideLoadingMore: true, //默认隐藏加载更多r
       }
     }
     return store;
