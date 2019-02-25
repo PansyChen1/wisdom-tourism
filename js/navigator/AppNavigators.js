@@ -13,6 +13,7 @@ import AsyncStorageDemoPage from "../page/AsyncStorageDemoPage";
 import DataStoreDemoPage from "../page/DataStoreDemoPage";
 import {connect} from "react-redux";
 import {createReactNavigationReduxMiddleware, createReduxContainer} from "react-navigation-redux-helpers";
+import WebViewPage from "../page/WebViewPage";
 
 export const rootCom = "Init"//设置根路由
 
@@ -38,24 +39,12 @@ const MainNavigator = createStackNavigator({
       header: null,// 隐藏顶部的导航
     }
   },
-  FetchDemoPage: {
-    screen: FetchDemoPage,
-    navigationOptions:{
-      // header: null,// 隐藏顶部的导航
+  WebViewPage: {
+    screen: WebViewPage,
+    navigationOptions: {
+      header: null,// 可以通过将header设为null 来禁用StackNavigator的Navigation Bar
     }
   },
-  AsyncStorageDemoPage: {
-    screen: AsyncStorageDemoPage,
-    navigationOptions:{
-      // header: null,// 隐藏顶部的导航
-    }
-  },
-  DataStoreDemoPage: {
-    screen: DataStoreDemoPage,
-    navigationOptions:{
-      // header: null,// 隐藏顶部的导航
-    }
-  }
 });
 
 export const RootNavigator = createAppContainer(
