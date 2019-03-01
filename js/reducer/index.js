@@ -3,6 +3,7 @@ import theme from "./theme";
 import popular from "./popular";
 import trending from "./trending";
 import favorite from "./favorite";
+import search from "./search";
 import {rootCom, RootNavigator} from '../navigator/AppNavigators';
 
 /**
@@ -27,6 +28,7 @@ const index = combineReducers({
   theme: theme,
   popular: popular,
   trending: trending,
-  favorite: favorite
+  favorite: favorite,
+  search: search,
 });
 export default index;

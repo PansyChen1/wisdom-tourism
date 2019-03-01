@@ -3,15 +3,16 @@ import Utils from "../util/Util";
 import ProjectModel from "../model/ProjectModel";
 
 /**
- * 处理下拉刷新时的数据
+ * 处理数据
  * @params actionType
  * @params dispatch
  * @params storeName
  * @params data
  * @params pageSize
  * @params favoriteDao
+ * @params params 其他参数
  * **/
-export function handleData(actionType, dispatch, storeName, data, pageSize, favoriteDao) {
+export function handleData(actionType, dispatch, storeName, data, pageSize, favoriteDao, params) {
   let fixItems = [];
   if(data && data.data) {
     if(Array.isArray(data.data)) {
@@ -29,7 +30,8 @@ export function handleData(actionType, dispatch, storeName, data, pageSize, favo
       items: fixItems,
       projectModels: projectModels,//第一次要加载的数据
       pageIndex: 1,
-      storeName
+      storeName,
+      ...params
     })
   });
 }
@@ -55,7 +57,11 @@ export async function _projectModels(showItems, favoriteDao, callback) {
   for (let i = 0, len = showItems.length; i < len; i++) {
     projectModels.push(new ProjectModel(showItems[i], Utils.checkFavorite(showItems[i], keys)));
   }
-  if (typeof callback === 'function') {
-    callback(projectModels);
-  }
+  doCallBack(callback, projectModels);
 }
+
+export const doCallBack = (callBack, object) => {
+  if (typeof callBack === 'function') {
+    callBack(object);
+  }
+};
