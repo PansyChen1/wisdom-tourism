@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, StyleSheet, Text, View, FlatList, RefreshControl, ActivityIndicator} from 'react-native';
+import {TouchableOpacity, Button, StyleSheet, Text, View, FlatList, RefreshControl, ActivityIndicator} from 'react-native';
 import {createMaterialTopTabNavigator,createAppContainer} from "react-navigation";
 import NavigationUtil from "../navigator/NavigationUtil"
 import DetailPage from "./DetailPage";
@@ -13,6 +13,8 @@ import {DeviceInfo}from 'react-native';
 import FavoriteDao from "../expand/dao/FavoriteDao";
 import {FLAG_STORAGE} from "../expand/dao/DataStore";
 import FavoriteUtil from "../util/FavoriteUtil";
+import AnalyticsUtil from "../util/AnalyticsUtil";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const URL = "https://api.github.com/search/repositories?q=";
 const QUERY_STR = "&sort=stars";
@@ -40,6 +42,27 @@ export default class PopularPage extends Component<Props> {
     return tabs;
   }
 
+  renderRightButton() {
+    const {theme} = this.props;
+    return <TouchableOpacity
+      onPress={() => {
+        // AnalyticsUtil.track("SearchButtonClick");
+        NavigationUtil.goPage({theme}, 'SearchPage')
+      }}
+    >
+      <View style={{padding: 5, marginRight: 8}}>
+        <Ionicons
+          name={'ios-search'}
+          size={24}
+          style={{
+            marginRight: 8,
+            alignSelf: 'center',
+            color: 'white',
+          }}/>
+      </View>
+    </TouchableOpacity>
+  }
+
   render() {
     let statusBar = {
       backgroundColor: TITLE_COLOR,
@@ -50,6 +73,7 @@ export default class PopularPage extends Component<Props> {
       title={"旅游信息"}
       statusBar={statusBar}
       style={{backgroundColor: TITLE_COLOR}}
+      rightButton={this.renderRightButton()}
     />
 
     const TabNavigator = createAppContainer(

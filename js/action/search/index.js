@@ -32,7 +32,7 @@ export function onSearch(inputKey, pageSize, token, favoriteDao, popularKeys, ca
         return;
       }
       let items = responseData.items;
-      handleData(Types.SEARCH_REFRESH_SUCCESS, dispatch, "", {data: item}, pageSize, favoriteDao, {
+      handleData(Types.SEARCH_REFRESH_SUCCESS, dispatch, "", {data: items}, pageSize, favoriteDao, {
         showBottomButton: !checkKeyIsExist(popularKeys, inputKey),
         inputKey,
       });
@@ -96,6 +96,13 @@ function genFetchUrl(key) {
   return API_URL + key + QUERY_STR;
 }
 
+/**
+ * 检查指定token是否已经取消
+ * @params token
+ * @params isRemove
+ * @params {boolean}
+ * **/
+
 function hasCancel(token, isRemove) {
   if (CANCEL_TOKENS.includes(token)) {
     isRemove && ArrayUtil.remove(CANCEL_TOKENS, token);
@@ -110,7 +117,7 @@ function hasCancel(token, isRemove) {
  * @params key
  * **/
 function checkKeyIsExist(keys, key) {
-  for (let i = 0,l = keys.lenght; i < l; i++) {
+  for (let i = 0,l = keys.length; i < l; i++) {
     if(key.toLowerCase() === keys[i].name.toLowerCase()) return true;
   }
   return false;

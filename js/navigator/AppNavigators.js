@@ -14,6 +14,7 @@ import DataStoreDemoPage from "../page/DataStoreDemoPage";
 import {connect} from "react-redux";
 import {createReactNavigationReduxMiddleware, createReduxContainer} from "react-navigation-redux-helpers";
 import WebViewPage from "../page/WebViewPage";
+import SearchPage from "../page/SearchPage";
 
 export const rootCom = "Init"//设置根路由
 
@@ -41,6 +42,12 @@ const MainNavigator = createStackNavigator({
   },
   WebViewPage: {
     screen: WebViewPage,
+    navigationOptions: {
+      header: null,// 可以通过将header设为null 来禁用StackNavigator的Navigation Bar
+    }
+  },
+  SearchPage: {
+    screen: SearchPage,
     navigationOptions: {
       header: null,// 可以通过将header设为null 来禁用StackNavigator的Navigation Bar
     }

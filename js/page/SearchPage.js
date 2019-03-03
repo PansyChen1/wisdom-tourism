@@ -15,6 +15,7 @@ import PopularItem from "../common/PopularItem";
 import ViewUtil from "../util/ViewUtil";
 import SafeAreaViewPlus from "../common/SafeAreaViewPlus";
 import Toast from 'react-native-easy-toast'
+import FavoriteUtil from "../util/FavoriteUtil";
 
 const URL = "https://api.github.com/search/repositories?q=";
 const QUERY_STR = "&sort=stars";
@@ -30,6 +31,7 @@ class SearchPage extends Component<Props> {
     this.params = this.props.navigation.state.params;
     this.backPress = new BackPressComponent({backPress: (e) => this.onBackPress(e)});
     this.favoriteDao = new FavoriteDao(FLAG_STORAGE.flag_popular);
+    // this.languageDao = new LanguageDao(FLAG_LANGUAGE.flag_key);
     this.isKeyChange = false;
   }
 
@@ -58,7 +60,7 @@ class SearchPage extends Component<Props> {
   onBackPress() {
     const {onSearchCancel} = this.props;
     onSearchCancel();//退出时取消搜索
-    this.refs.input.blur();
+    this.refs.input.blur();//点击返回键时收起键盘
     NavigationUtil.goBack(this.props.navigation);
     return true;
   }
@@ -77,6 +79,18 @@ class SearchPage extends Component<Props> {
       onFavorite={(item, isFavorite) => FavoriteUtil.onFavorite(favoriteDao, item, isFavorite, FLAG_STORAGE.flag_popular)}
     />
   }
+
+  genIndicator() {
+    const {search} = this.props;
+    return search.hideLoadingMore ? null :
+      <View style={styles.indicatorContainer}>
+        <ActivityIndicator
+          style={styles.indicator}
+        />
+        <Text>正在加载更多</Text>
+      </View>
+  }
+
 
   onRightButtonClick() {
     const {onSearchCancel, search} = this.props;
@@ -114,7 +128,7 @@ class SearchPage extends Component<Props> {
       backgroundColor: THEME_COLOR,
       flexDirection: 'row',
       alignItems: 'center',
-      height: (Platform.OS === 'ios') ? GlobalStyles.nav_bar_height_ios : GlobalStyles.nav_bar_height_android,
+      height: GlobalStyles.nav_bar_height_android,
     }}>
       {backButton}
       {inputView}
@@ -146,9 +160,9 @@ class SearchPage extends Component<Props> {
   render() {
     const {isLoading, projectModels, showBottomButton, hideLoadingMore} = this.props.search;
     let statusBar = null;
-    if (Platform.OS === 'ios') {
-      statusBar = <View style={styles.statusBar}/>
-    }
+    // if (Platform.OS === 'ios') {
+    //   statusBar = <View style={styles.statusBar}/>
+    // }
     let listView = !isLoading ? <FlatList
       data={projectModels}
       renderItem={data => this.renderItem(data)}
@@ -223,13 +237,14 @@ class SearchPage extends Component<Props> {
 
 const mapStateToProps = state => ({
   search: state.search,
-  keys: state.language.keys,
+  // keys: state.language.keys,
 });
 const mapDispatchToProps = dispatch => ({
   //将dispatch(actions.onRefreshPopular(storeName, url, pageSize))绑定到props
   onSearch: (inputKey, pageSize, token, favoriteDao, popularKeys, callBack) => dispatch(actions.onSearch(inputKey, pageSize, token, favoriteDao, popularKeys, callBack)),
   onSearchCancel: (token) => dispatch(actions.onSearchCancel(token)),
   onLoadMoreSearch: (pageIndex, pageSize, dataArray, favoriteDao, callBack) => dispatch(actions.onLoadMoreSearch(pageIndex, pageSize, dataArray, favoriteDao, callBack)),
+  // onLoadLanguage: (flag) => dispatch(actions.onLoadLanguage(flag))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);
@@ -274,8 +289,8 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    height: (Platform.OS === 'ios') ? 26 : 36,
-    borderWidth: (Platform.OS === 'ios') ? 1 : 0,
+    height: 36,
+    borderWidth: 0,
     borderColor: "white",
     alignSelf: 'center',
     paddingLeft: 5,
@@ -289,5 +304,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
+  },
+  title: {
+    fontSize: 18,
+    color: "white",
+    fontWeight: "500"
   }
 });
