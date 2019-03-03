@@ -38,7 +38,7 @@ export function handleData(actionType, dispatch, storeName, data, pageSize, favo
 
 /**
  * 通过本地的收藏状态包装Item
- * 异步转同步
+ * 通过async 和 await实现异步转同步
  * @param showItems
  * @param favoriteDao
  * @param callback
