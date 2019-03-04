@@ -1,4 +1,4 @@
-export default class Utils {
+export default class Util {
   /**
    * 检查该Item是否被收藏
    * **/
@@ -17,7 +17,7 @@ export default class Utils {
    * @param keys
    * @param key
    */
-  static checkKeyIsExist(keys, key) {
+  static checkKeyIsExist(keys = [], key) {
     for (let i = 0, l = keys.length; i < l; i++) {
       if (key.toLowerCase() === keys[i].name.toLowerCase()) return true;
     }

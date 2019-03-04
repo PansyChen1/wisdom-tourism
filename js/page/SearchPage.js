@@ -22,6 +22,7 @@ const QUERY_STR = "&sort=stars";
 const TITLE_COLOR = "#678";
 const favoriteDao = new FavoriteDao(FLAG_STORAGE.flag_popular);
 const THEME_COLOR = '#678';
+const pageSize = 10;
 
 type Props = {};
 
@@ -46,12 +47,12 @@ class SearchPage extends Component<Props> {
   loadData(loadMore) {
     const {onLoadMoreSearch, onSearch, search, keys} = this.props;
     if (loadMore) {
-      onLoadMoreSearch(search.pageIndex, pageSize, search.items, this.favoriteDao, callback=>{
-        this.refs.toast.show("没有更多了");
+      onLoadMoreSearch(++search.pageIndex, pageSize, search.items, this.favoriteDao, callback=>{
+        this.toast.show("没有更多了");
       });
     }else {
-      onSearch(this.inputKey, pageSize, this.searchToken = new Date().getTime(), this.favoriteDao, key, message => {
-        this.refs.toast.show(message);
+      onSearch(this.inputKey, pageSize, this.searchToken = new Date().getTime(), this.favoriteDao, keys, message => {
+        this.toast.show(message);
       });
     }
   }
@@ -177,7 +178,7 @@ class SearchPage extends Component<Props> {
         <RefreshControl
           title={'Loading'}
           titleColor={THEME_COLOR}
-          colors={THEME_COLOR}
+          colors={[THEME_COLOR]}
           refreshing={isLoading}
           onRefresh={() => this.loadData()}
           tintColor={THEME_COLOR}
@@ -199,17 +200,17 @@ class SearchPage extends Component<Props> {
         console.log('---onMomentumScrollBegin-----')
       }}
     /> : null;
-    let bottomButton = showBottomButton ?
-      <TouchableOpacity
-        style={[styles.bottomButton, {backgroundColor: THEME_COLOR}]}
-        onPress={() => {
-          this.saveKey();
-        }}
-      >
-        <View style={{justifyContent: 'center'}}>
-          <Text style={styles.title}>朕收下了</Text>
-        </View>
-      </TouchableOpacity> : null;
+    // let bottomButton = showBottomButton ?
+    //   <TouchableOpacity
+    //     style={[styles.bottomButton, {backgroundColor: THEME_COLOR}]}
+    //     onPress={() => {
+    //       this.saveKey();
+    //     }}
+    //   >
+    //     <View style={{justifyContent: 'center'}}>
+    //       <Text style={styles.title}>朕收下了</Text>
+    //     </View>
+    //   </TouchableOpacity> : null;
     let indicatorView = isLoading ?
       <ActivityIndicator
         style={styles.centering}
@@ -227,7 +228,7 @@ class SearchPage extends Component<Props> {
       {statusBar}
       {this.renderNavBar()}
       {resultView}
-      {bottomButton}
+      {/*{bottomButton}*/}
       <Toast ref={toast => this.toast = toast}/>
     </SafeAreaViewPlus>
   }
