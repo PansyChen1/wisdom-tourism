@@ -28,7 +28,7 @@ const TABS = {//配置跳转的路由
   TrendingPage:{
     screen: TrendingPage,
     navigationOptions:{
-      tabBarLabel:"信息查询",
+      tabBarLabel:"个性化",
       tabBarIcon:({tintColor,focused}) => (
         <AntDesign
           name={"search1"}
