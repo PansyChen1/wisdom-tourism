@@ -31,7 +31,7 @@ const TABS = {//配置跳转的路由
       tabBarLabel:"个性化",
       tabBarIcon:({tintColor,focused}) => (
         <AntDesign
-          name={"search1"}
+          name={"customerservice"}
           size={26}
           style={{color:tintColor}}
         />
