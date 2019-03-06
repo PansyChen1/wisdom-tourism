@@ -8,7 +8,7 @@ export const MORE_MENU = {
   Sort_Language: {name: '美食', Icons: MaterialCommunityIcons, icon: 'sort'},
   Custom_Theme: {name: '自定义主题', Icons: Ionicons, icon: 'ios-color-palette'},
   Custom_Key: {name: '自定义标签', Icons: Ionicons, icon: 'md-checkbox-outline'},
-  Sort_Key: {name: '标签排序', Icons: MaterialCommunityIcons, icon: 'sort'},
+  Sort_Key: {name: '收藏', Icons: MaterialCommunityIcons, icon: 'sort'},
   Remove_Key: {name: '特产', Icons: Ionicons, icon: 'md-remove'},
   About_Author: {name: '民俗', Icons: Octicons, icon: 'smiley'},
   About: {name: '关于', Icons: Ionicons, icon: 'logo-github'},
