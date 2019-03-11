@@ -10,8 +10,22 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import NavigationUtil from "../navigator/NavigationUtil";
 import {BottomTabBar} from 'react-navigation-tabs';
 import {connect} from "react-redux";
+import FirstPage from "../page/FirstPage";
 
 const TABS = {//配置跳转的路由
+  FirstPage:{
+    screen: FirstPage,
+    navigationOptions:{
+      tabBarLabel:"首页",
+      tabBarIcon:({tintColor, focused}) => (
+        <AntDesign
+          name={"home"}
+          size={26}
+          style={{color:tintColor}}
+        />
+      )
+    }
+  },
   PopularPage:{
     screen: PopularPage,
     navigationOptions:{
@@ -76,8 +90,8 @@ class DynamicTabNavigator extends Component<Props> {
     if(this.Tabs) {
       return this.Tabs;
     }
-    const {PopularPage, TrendingPage, FavoritePage, MyPage} = TABS;
-    const tabs = {PopularPage, TrendingPage, FavoritePage, MyPage};//根据需要定制显示的tab
+    const {FirstPage, PopularPage, TrendingPage, FavoritePage, MyPage} = TABS;
+    const tabs = {FirstPage, PopularPage, TrendingPage, FavoritePage, MyPage};//根据需要定制显示的tab
     // PopularPage.navigationOptions.tabBarLabel="最新";//动态修改tab的名称
     return this.Tabs = createAppContainer(createBottomTabNavigator(tabs, {
       tabBarComponent: props => {

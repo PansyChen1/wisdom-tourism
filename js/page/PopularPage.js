@@ -15,6 +15,7 @@ import {FLAG_STORAGE} from "../expand/dao/DataStore";
 import FavoriteUtil from "../util/FavoriteUtil";
 import AnalyticsUtil from "../util/AnalyticsUtil";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import Scroll from "../common/Scroll";
 
 const URL = "https://api.github.com/search/repositories?q=";
 const QUERY_STR = "&sort=stars";
