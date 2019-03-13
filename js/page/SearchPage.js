@@ -125,15 +125,20 @@ class SearchPage extends Component<Props> {
           <Text style={styles.title}>{showText}</Text>
         </View>
       </TouchableOpacity>;
-    return <View style={{
-      backgroundColor: THEME_COLOR,
-      flexDirection: 'row',
-      alignItems: 'center',
-      height: GlobalStyles.nav_bar_height_android,
-    }}>
-      {backButton}
-      {inputView}
-      {rightButton}
+    return <View style={GlobalStyles.root_container}>
+      <View style={{
+        backgroundColor: THEME_COLOR,
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: GlobalStyles.nav_bar_height_android,
+      }}>
+        {backButton}
+        {inputView}
+        {rightButton}
+      </View>
+      <Text style={styles.groupTitle}>热门目的地</Text>
+      <Text style={styles.groupPlace}>孔庙</Text>
+      <Text style={styles.groupPlace}>峄山</Text>
     </View>
   }
 
@@ -310,5 +315,19 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "white",
     fontWeight: "500"
+  },
+  groupTitle: {
+    marginLeft: 12,
+    marginTop: 16,
+    marginBottom: 5,
+    fontSize: 20,
+    color: 'gray'
+  },
+  groupPlace: {
+    fontSize: 16,
+    textDecorationLine: 'underline',
+    marginLeft: 20,
+    marginTop:12,
+    marginBottom: 5
   }
 });

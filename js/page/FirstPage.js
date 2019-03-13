@@ -5,7 +5,6 @@ import {DeviceInfo, TouchableOpacity, View} from "react-native";
 import NavigationUtil from "../navigator/NavigationUtil";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import LocationPage from "../page/LocationPage";
 
 const Geolocation = require('Geolocation');
 const TITLE_COLOR = "#678";
@@ -21,7 +20,6 @@ export default class FirstPage extends Component {
           "\n海拔：" + location.coords.altitude +
           "\n海拔准确度：" + location.coords.altitudeAccuracy +
           "\n时间戳：" + location.timestamp;
-
         alert(result);
       },
       error => {
