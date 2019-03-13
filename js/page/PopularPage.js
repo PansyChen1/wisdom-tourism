@@ -74,7 +74,7 @@ export default class PopularPage extends Component<Props> {
       title={"旅游信息"}
       statusBar={statusBar}
       style={{backgroundColor: TITLE_COLOR}}
-      rightButton={this.renderRightButton()}
+      // rightButton={this.renderRightButton()}
     />
 
     const TabNavigator = createAppContainer(

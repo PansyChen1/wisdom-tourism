@@ -102,6 +102,11 @@ class SearchPage extends Component<Props> {
     }
   }
 
+  _toDetail() {
+    const {theme} = this.props;
+    NavigationUtil.goPage({theme}, "search");
+  }
+
   renderNavBar() {
     const {theme} = this.params;
     const {showText, inputKey} = this.props.search;
@@ -136,9 +141,46 @@ class SearchPage extends Component<Props> {
         {inputView}
         {rightButton}
       </View>
-      <Text style={styles.groupTitle}>热门目的地</Text>
-      <Text style={styles.groupPlace}>孔庙</Text>
-      <Text style={styles.groupPlace}>峄山</Text>
+
+
+      <View>
+        <View>
+          <Text style={styles.groupTitle}>热门搜索</Text>
+        </View>
+        <View style={styles.placeStyle}>
+          <Text style={styles.groupPlace} onPress={this._toDetail.bind(this)}>孔庙</Text>
+          <Text style={styles.groupPlace}>峄山</Text>
+          <Text style={styles.groupPlace}>梁山泊遗址</Text>
+        </View>
+        <View style={styles.placeStyle}>
+          <Text style={styles.groupPlace}>小北湖</Text>
+          <Text style={styles.groupPlace}>人民公园</Text>
+          <Text style={styles.groupPlace}>宝相寺</Text>
+        </View>
+      </View>
+
+
+      <View>
+        <View>
+          <Text style={styles.groupTitle}>热门目的地</Text>
+        </View>
+        <View style={styles.placeStyle}>
+          <Text style={styles.groupPlace}>孔庙</Text>
+          <Text style={styles.groupPlace}>峄山</Text>
+          <Text style={styles.groupPlace}>宝相寺</Text>
+        </View>
+        <View style={styles.placeStyle}>
+          <Text style={styles.groupPlace}>小北湖</Text>
+          <Text style={styles.groupPlace}>五彩万象城</Text>
+          <Text style={styles.groupPlace}>文峰塔</Text>
+        </View>
+        <View style={styles.placeStyle}>
+          <Text style={styles.groupPlace}>孟府</Text>
+          <Text style={styles.groupPlace}>青山寺</Text>
+          <Text style={styles.groupPlace}>太白楼</Text>
+        </View>
+      </View>
+
     </View>
   }
 
@@ -324,10 +366,21 @@ const styles = StyleSheet.create({
     color: 'gray'
   },
   groupPlace: {
+    marginTop:10,
+    marginLeft:10,
+    marginRight:10,
+    height:36,
+    width: 114,
     fontSize: 16,
-    textDecorationLine: 'underline',
-    marginLeft: 20,
-    marginTop:12,
-    marginBottom: 5
+    borderWidth:1,
+    padding:6,
+    borderColor:'#ddd',
+    textAlign:'center',
+    borderRadius: 5,
+    color: '#000',
+  },
+  placeStyle: {
+    flexDirection:"row",
+    justifyContent:"space-around"
   }
 });

@@ -79,7 +79,7 @@ export default class MyPage extends Component<Props> {
       title={"我的"}
       statusBar={statusBar}
       style={{backgroundColor: THEME_COLOR}}
-      rightButton={this.getRightButton()}
+      // rightButton={this.getRightButton()}
       leftButton={this.getLeftButton()}
     />;
 
