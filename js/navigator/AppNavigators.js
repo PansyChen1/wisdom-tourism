@@ -16,6 +16,7 @@ import {createReactNavigationReduxMiddleware, createReduxContainer} from "react-
 import WebViewPage from "../page/WebViewPage";
 import SearchPage from "../page/SearchPage";
 import LoginPage from "../page/LoginPage";
+import RegisterPage from "../page/RegisterPage";
 
 export const rootCom = "Init"//设置根路由
 
@@ -61,10 +62,20 @@ const MainNavigator = createStackNavigator({
   },
 });
 
+const RegisterNavigator = createStackNavigator({
+  RegisterPage: {
+    screen: RegisterPage,
+    navigationOptions: {
+      header: null,
+    }
+  }
+})
+
 export const RootNavigator = createAppContainer(
   createSwitchNavigator({
     Init: InitNavigator,
     Main: MainNavigator,
+    Register: RegisterNavigator,
   },{
     navigationOptions:{
       header: null,// 隐藏顶部的导航

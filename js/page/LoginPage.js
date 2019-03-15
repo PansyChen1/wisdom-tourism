@@ -3,6 +3,7 @@ import {View, TextInput, Image, Text, TouchableOpacity, StyleSheet, Dimensions, 
 import Entypo from "react-native-vector-icons/Entypo";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import NavigationBar from "../common/NavigationBar";
+import NavigationUtil from "../navigator/NavigationUtil";
 
 var width = Dimensions.get('window').width;//得到屏幕宽度
 const TITLE_COLOR = "#678";
@@ -16,7 +17,9 @@ export default class LoginPage extends Component{
   };
   //点击注册函数
   onRegisterButtonPress() {
-
+    NavigationUtil.resetToRegisterPage({
+      navigation: this.props.navigation
+    });
   }
   render() {
     let statusBar = {
