@@ -54,8 +54,8 @@ export default class LoginPage extends Component{
           />
         </View>
         <View style={LoginStyles.row}>
-          <Entypo
-            name={'key'}
+          <AntDesign
+            name={'lock'}
             size={24}
             style={{paddingRight: 4}}
           />
