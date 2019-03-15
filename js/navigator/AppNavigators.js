@@ -31,12 +31,7 @@ const InitNavigator = createStackNavigator({
 });
 
 const MainNavigator = createStackNavigator({
-  LoginPage: {
-    screen: LoginPage,
-    navigationOptions:{
-      header: null,
-    }
-  },
+
   HomePage: {
     screen: HomePage,
     navigationOptions:{
@@ -73,6 +68,15 @@ const RegisterNavigator = createStackNavigator({
 });
 
 const LoginNavigator = createStackNavigator({
+  LoginPage: {
+    screen: LoginPage,
+    navigationOptions: {
+      header: null,
+    }
+  }
+});
+
+const FirstNavigator = createStackNavigator({
   FirstPage: {
     screen: FirstPage,
     navigationOptions: {
@@ -87,7 +91,8 @@ export const RootNavigator = createAppContainer(
     Init: InitNavigator,
     Main: MainNavigator,
     Register: RegisterNavigator,
-    First: LoginNavigator,
+    Login: LoginNavigator,
+    First: FirstNavigator,
   },{
     navigationOptions:{
       header: null,// 隐藏顶部的导航

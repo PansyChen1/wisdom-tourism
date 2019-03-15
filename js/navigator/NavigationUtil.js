@@ -33,18 +33,24 @@ export default class NavigationUtil {
    * 重置到首页
    * @param navigation
    * */
+  static resetToLoginPage(params){
+    const {navigation} = params;
+    navigation.goBack();
+    navigation.navigate("Login");
+  }
+  /**
+   * 登录之后跳转到首页
+   * @param navigation
+   * */
   static resetToHomePage(params){
     const {navigation} = params;
     navigation.goBack();
     navigation.navigate("Main");
   }
-
-  static resetToFirstPage(params){
-    const {navigation} = params;
-    navigation.goBack();
-    navigation.navigate("FirstPage");
-  }
-
+  /**
+   * 跳转到注册页面
+   * @param navigation
+   * */
   static resetToRegisterPage(params) {
     const {navigation} = params;
     navigation.goBack();

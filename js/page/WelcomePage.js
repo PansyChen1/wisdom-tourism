@@ -9,7 +9,7 @@ export default class WelcomePage extends Component<Props> {
   //设置定时器，2秒之后从欢迎页跳转到首页
   componentDidMount(){
     this.timer = setTimeout(() => {
-      NavigationUtil.resetToHomePage({
+      NavigationUtil.resetToLoginPage({
         navigation: this.props.navigation
       })
     },1000);

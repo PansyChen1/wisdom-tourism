@@ -13,7 +13,7 @@ export default class LoginPage extends Component{
   //点击登录函数
   onLoginButtonPress ()  {
 
-    NavigationUtil.resetToFirstPage({
+    NavigationUtil.resetToHomePage({
       navigation: this.props.navigation
     });
 
