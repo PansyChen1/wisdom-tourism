@@ -6,7 +6,7 @@ type Props = {};
 const width = Dimensions.get('window').width;//得到屏幕宽度
 const height = Dimensions.get('window').height;//得到屏幕长度
 export default class WelcomePage extends Component<Props> {
-  //设置定时器，2秒之后从欢迎页跳转到首页
+  //设置定时器，2秒之后从欢迎页跳转到登录页面
   componentDidMount(){
     this.timer = setTimeout(() => {
       NavigationUtil.resetToLoginPage({

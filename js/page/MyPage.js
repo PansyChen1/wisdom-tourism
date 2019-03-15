@@ -9,48 +9,39 @@ import NavigationBar from "../common/NavigationBar";
 import {MORE_MENU} from "../common/MORE_MENU";
 import GlobalStyles from "../res/styles/GlobalStyles";
 import ViewUtil from "../util/ViewUtil";
+import BackPressComponent from "../common/BackPressComponent";
 
 const THEME_COLOR = "#678"
 type Props = {};
 export default class MyPage extends Component<Props> {
-
-  getRightButton() {
-    return <View style={{flexDirection: "row"}}>
-      <TouchableOpacity
-        onPress={() => {
-
-        }}
-      >
-        <View style={{padding: 5, marginRight: 8}}>
-          <Feather
-            name={'search'}
-            size={24}
-            style={{color: "white"}}
-          />
-        </View>
-        <Ionicons
-          name={'ios-arrow-forward'}
-          size={16}
-          style={{
-            marginRight: 10,
-            alignSelf: 'center',
-            color: THEME_COLOR,
-          }}/>
-      </TouchableOpacity>
-    </View>
+  constructor(props) {
+    super(props);
+    this.state = {
+      canGoBack: false,
+    };
+    this.backPress = new BackPressComponent({backPress: () => this.onBackPress()});
   }
 
-  getLeftButton(callback) {
-    return <TouchableOpacity
-      style={{padding: 8, paddingLeft: 12}}
-      onPress={callback}
-    >
-      <Ionicons
-        name={'ios-arrow-back'}
-        size={26}
-        style={{color: "white"}}
-      />
-    </TouchableOpacity>
+  /**
+   * 处理android中的物理返回键
+   **/
+  componentDidMount() {
+    this.backPress.componentDidMount();
+  }
+  componentWillUnmount() {
+    this.backPress.componentWillUnmount();
+  }
+
+  onBackPress() {
+    this.onBack();
+    return true;
+  }
+  onBack() {
+    if(this.state.canGoBack) {
+      this.webView.goBack();
+    }else {
+      NavigationUtil.goBack(this.props.navigation);
+    }
   }
 
   onClick(menu) {
@@ -80,7 +71,7 @@ export default class MyPage extends Component<Props> {
       statusBar={statusBar}
       style={{backgroundColor: THEME_COLOR}}
       // rightButton={this.getRightButton()}
-      leftButton={this.getLeftButton()}
+      leftButton={ViewUtil.getLeftBackButton(() => this.onBack())}
     />;
 
     return (

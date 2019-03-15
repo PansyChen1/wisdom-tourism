@@ -30,7 +30,7 @@ export default class NavigationUtil {
     navigation.goBack();
   }
   /**
-   * 重置到首页
+   * 跳转到登录页面
    * @param navigation
    * */
   static resetToLoginPage(params){

@@ -6,16 +6,32 @@ import NavigationUtil from "../navigator/NavigationUtil";
 import ViewUtil from "../util/ViewUtil";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import BackPressComponent from "../common/BackPressComponent";
 
 const THEME_COLOR = "#678";
-
+type Props = {};
 var width = Dimensions.get('window').width;//得到屏幕宽度
-export default class RegisterPage extends Component{
-  constructor(props){
+export default class RegisterPage extends Component<Props>{
+  constructor(props) {
     super(props);
     this.state = {
-      canGoBack: false
-    }
+      canGoBack: false,
+    };
+    this.backPress = new BackPressComponent({backPress: () => this.onBackPress()});
+  }
+  /**
+   * 处理android中的物理返回键
+   **/
+  componentDidMount() {
+    this.backPress.componentDidMount();
+  }
+  componentWillUnmount() {
+    this.backPress.componentWillUnmount();
+  }
+
+  onBackPress() {
+    this.onBack();
+    return true;
   }
   onBack() {
     if(this.state.canGoBack) {
