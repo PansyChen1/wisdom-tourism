@@ -68,14 +68,14 @@ export default class PopularPage extends Component<Props> {
     let statusBar = {
       backgroundColor: TITLE_COLOR,
       barStyle: "light-content",
-    }
+    };
 
     let navigationBar = <NavigationBar
       title={"旅游信息"}
       statusBar={statusBar}
       style={{backgroundColor: TITLE_COLOR}}
       // rightButton={this.renderRightButton()}
-    />
+    />;
 
     const TabNavigator = createAppContainer(
       createMaterialTopTabNavigator(this._genTabs(), {

@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import {View, TextInput, Image, Text, TouchableOpacity, StyleSheet, Dimensions, Alert} from 'react-native';
-import AntDesign from "react-native-vector-icons/AntDesign";
 import Entypo from "react-native-vector-icons/Entypo";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import NavigationBar from "../common/NavigationBar";
 
 var width = Dimensions.get('window').width;//得到屏幕宽度
+const TITLE_COLOR = "#678";
 
 export default class LoginPage extends Component{
 
@@ -12,18 +14,29 @@ export default class LoginPage extends Component{
     Alert.alert('用户输入信息','您输入的账号为：'+this.state.username+'，输入的密码为：'+this.state.password);
   };
   render() {
+    let statusBar = {
+      backgroundColor: TITLE_COLOR,
+      barStyle: "light-content",
+    };
+
+    let navigationBar = <NavigationBar
+      title={"济宁市智慧乡村旅游系统"}
+      statusBar={statusBar}
+      style={{backgroundColor: TITLE_COLOR}}
+      // rightButton={this.renderRightButton()}
+    />;
+
     return (
       <View style={LoginStyles.container}>
+        {navigationBar}
         <Image source={require('../images/welcomePageLogin.jpeg')}//项目中的图片
                style={LoginStyles.logoImg}/>
         <View style={LoginStyles.row}>
-          <Text>
-            <AntDesign
-              name={'user'}
-              size={24}
-            />
-          </Text>
-
+          <AntDesign
+            name={'user'}
+            size={24}
+            style={{paddingRight: 4}}
+          />
           <TextInput
             placeholder="请输入用户名"
             underlineColorAndroid={'transparent'}//去掉下划线
@@ -36,6 +49,7 @@ export default class LoginPage extends Component{
           <Entypo
             name={'key'}
             size={24}
+            style={{paddingRight: 4}}
           />
           <TextInput
             placeholder="请输入密码"
@@ -70,23 +84,23 @@ export default class LoginPage extends Component{
 
 const LoginStyles = StyleSheet.create({
   container:{
-
+    flex: 1,
   },
   row:{
     flexDirection: 'row',
-    height:50,
-    lineHeight:50,
-    margin:15,
+    height:26,
+    lineHeight:26,
+    margin:25,
   },
   logoImg: {
     width:width,
-    height:180,
+    height:190,
     marginBottom:60
   },
   username: {
     fontSize:16,
     height:50,
-    width:width-70,//居中，宽度为屏幕宽度-32，这样左右都有16的边距
+    width:width-80,//居中，宽度为屏幕宽度-32，这样左右都有16的边距
     borderRadius: 6,//输入框边界圆角度数
     borderColor: "#678",//输入框边界颜色
     paddingLeft:10,//这里是为了在圆角之后输入
@@ -95,7 +109,7 @@ const LoginStyles = StyleSheet.create({
     alignSelf:'center'//自身居中
   },
   login :{
-    width:width-50,
+    width:width-56,
     height:50,
     borderRadius: 6,//按钮圆角
     alignSelf:'center',
