@@ -9,10 +9,15 @@ const TITLE_COLOR = "#678";
 
 export default class LoginPage extends Component{
 
-  //点击事件函数
-  onButtonPress ()  {
+  //点击登录函数
+  onLoginButtonPress ()  {
+
     Alert.alert('用户输入信息','您输入的账号为：'+this.state.username+'，输入的密码为：'+this.state.password);
   };
+  //点击注册函数
+  onRegisterButtonPress() {
+
+  }
   render() {
     let statusBar = {
       backgroundColor: TITLE_COLOR,
@@ -63,7 +68,7 @@ export default class LoginPage extends Component{
           activeOpacity={0.5}//点击时的透明度
           style={LoginStyles.login}
           //点击事件，要记得绑定
-          onPress={this.onButtonPress.bind(this)}>
+          onPress={this.onLoginButtonPress.bind(this)}>
           <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>
             登录
           </Text>
@@ -72,7 +77,7 @@ export default class LoginPage extends Component{
           activeOpacity={0.5}//点击时的透明度
           style={LoginStyles.login}
           //点击事件，要记得绑定
-          onPress={this.onButtonPress.bind(this)}>
+          onPress={this.onRegisterButtonPress.bind(this)}>
           <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>
             注册
           </Text>

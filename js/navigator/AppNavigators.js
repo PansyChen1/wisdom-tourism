@@ -15,6 +15,7 @@ import {connect} from "react-redux";
 import {createReactNavigationReduxMiddleware, createReduxContainer} from "react-navigation-redux-helpers";
 import WebViewPage from "../page/WebViewPage";
 import SearchPage from "../page/SearchPage";
+import LoginPage from "../page/LoginPage";
 
 export const rootCom = "Init"//设置根路由
 
@@ -28,6 +29,12 @@ const InitNavigator = createStackNavigator({
 });
 
 const MainNavigator = createStackNavigator({
+  LoginPage: {
+    screen: LoginPage,
+    navigationOptions:{
+      header: null,
+    }
+  },
   HomePage: {
     screen: HomePage,
     navigationOptions:{
