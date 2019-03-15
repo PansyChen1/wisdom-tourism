@@ -13,7 +13,10 @@ export default class LoginPage extends Component{
   //点击登录函数
   onLoginButtonPress ()  {
 
-    Alert.alert('用户输入信息','您输入的账号为：'+this.state.username+'，输入的密码为：'+this.state.password);
+    NavigationUtil.resetToFirstPage({
+      navigation: this.props.navigation
+    });
+
   };
   //点击注册函数
   onRegisterButtonPress() {

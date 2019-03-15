@@ -17,6 +17,7 @@ import WebViewPage from "../page/WebViewPage";
 import SearchPage from "../page/SearchPage";
 import LoginPage from "../page/LoginPage";
 import RegisterPage from "../page/RegisterPage";
+import FirstPage from "../page/FirstPage";
 
 export const rootCom = "Init"//设置根路由
 
@@ -69,13 +70,24 @@ const RegisterNavigator = createStackNavigator({
       header: null,
     }
   }
-})
+});
+
+const LoginNavigator = createStackNavigator({
+  FirstPage: {
+    screen: FirstPage,
+    navigationOptions: {
+      header: null,
+    }
+  }
+});
+
 
 export const RootNavigator = createAppContainer(
   createSwitchNavigator({
     Init: InitNavigator,
     Main: MainNavigator,
     Register: RegisterNavigator,
+    First: LoginNavigator,
   },{
     navigationOptions:{
       header: null,// 隐藏顶部的导航

@@ -39,14 +39,16 @@ export default class NavigationUtil {
     navigation.navigate("Main");
   }
 
+  static resetToFirstPage(params){
+    const {navigation} = params;
+    navigation.goBack();
+    navigation.navigate("FirstPage");
+  }
+
   static resetToRegisterPage(params) {
     const {navigation} = params;
     navigation.goBack();
     navigation.navigate("Register");
   }
 
-  static resetToLoginPage(params){
-    const {navigation} = params;
-    navigation.navigate("Main");
-  }
 }
