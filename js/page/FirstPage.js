@@ -5,6 +5,7 @@ import {DeviceInfo, TouchableOpacity, View} from "react-native";
 import NavigationUtil from "../navigator/NavigationUtil";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import ListPage from "./ListPage";
 
 const Geolocation = require('Geolocation');
 const TITLE_COLOR = "#678";
@@ -82,6 +83,7 @@ export default class FirstPage extends Component {
       <View style={{flex: 1, marginTop: DeviceInfo.isIPhoneX_deprecated ? 30 : 0}}>
         {navigationBar}
         <Scroll/>
+        <ListPage/>
       </View>
     )
   }

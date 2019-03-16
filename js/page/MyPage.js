@@ -11,7 +11,7 @@ import GlobalStyles from "../res/styles/GlobalStyles";
 import ViewUtil from "../util/ViewUtil";
 import BackPressComponent from "../common/BackPressComponent";
 
-const THEME_COLOR = "#678"
+const THEME_COLOR = "#678";
 type Props = {};
 export default class MyPage extends Component<Props> {
   constructor(props) {
