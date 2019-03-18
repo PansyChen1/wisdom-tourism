@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import Scroll from "../common/Scroll";
 import NavigationBar from "../common/NavigationBar";
-import {DeviceInfo, TouchableOpacity, View} from "react-native";
+import {DeviceInfo, TouchableOpacity, View, Text} from "react-native";
 import NavigationUtil from "../navigator/NavigationUtil";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import ListPage from "./ListPage";
+import SlidePage from "./SlidePage";
 
 const Geolocation = require('Geolocation');
 const TITLE_COLOR = "#678";
@@ -83,8 +84,27 @@ export default class FirstPage extends Component {
       <View style={{flex: 1, marginTop: DeviceInfo.isIPhoneX_deprecated ? 30 : 0}}>
         {navigationBar}
         <Scroll/>
-        <ListPage/>
+        <SlidePage/>
+        {/*<ListPage/>*/}
+
+        <View style={styles.hotPlace}>
+          <Text style={{fontSize:20}}>—热门目的地 > —</Text>
+
+
+        </View>
       </View>
     )
   }
 }
+
+const styles = {
+  container: {
+    flex:1,
+    marginTop:-40
+  },
+  hotPlace: {
+    marginTop: -100,
+    justifyContent:"space-around",
+    flexDirection: "row",
+  }
+};

@@ -64,7 +64,7 @@ export default class ListPage extends Component{
 const styles = {
   container: {
     flex:1,
-    marginTop:-50
+    marginTop:-60,
   },
   picPosition: {
     flexDirection: "row",
