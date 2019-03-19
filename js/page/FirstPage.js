@@ -1,12 +1,12 @@
 import React, {Component} from "react";
 import Scroll from "../common/Scroll";
 import NavigationBar from "../common/NavigationBar";
-import {DeviceInfo, TouchableOpacity, View, Text} from "react-native";
+import {DeviceInfo, TouchableOpacity, View, Text,Image} from "react-native";
 import NavigationUtil from "../navigator/NavigationUtil";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import ListPage from "./ListPage";
-import SlidePage from "./SlidePage";
+import Feather from "react-native-vector-icons/Feather";
 
 const Geolocation = require('Geolocation');
 const TITLE_COLOR = "#678";
@@ -84,12 +84,31 @@ export default class FirstPage extends Component {
       <View style={{flex: 1, marginTop: DeviceInfo.isIPhoneX_deprecated ? 30 : 0}}>
         {navigationBar}
         <Scroll/>
-        <SlidePage/>
-        {/*<ListPage/>*/}
+        <ListPage/>
 
         <View style={styles.hotPlace}>
-          <Text style={{fontSize:20}}>—热门目的地 > —</Text>
-
+          <Text style={{fontSize:20, alignSelf:"center"}}>
+            ---------- 热门目的地
+            <AntDesign
+              name={"right"}
+              size={18}
+            />
+            <Text> ----------</Text>
+          </Text>
+          <View style={styles.hotPlacePic}>
+            <Image
+              source={require("../images/1.png")}
+              style={{width:100,height:60}}
+            />
+            <Image
+              source={require("../images/1.png")}
+              style={{width:100,height:60}}
+            />
+            <Image
+              source={require("../images/1.png")}
+              style={{width:100,height:60}}
+            />
+          </View>
 
         </View>
       </View>
@@ -100,11 +119,15 @@ export default class FirstPage extends Component {
 const styles = {
   container: {
     flex:1,
-    marginTop:-40
+    marginTop:-10
   },
   hotPlace: {
-    marginTop: -100,
+    marginTop: 20,
     justifyContent:"space-around",
+  },
+  hotPlacePic:{
     flexDirection: "row",
+    justifyContent: "space-around",
+    marginTop:20,
   }
 };
