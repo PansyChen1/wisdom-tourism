@@ -16,6 +16,7 @@ import NavigationBar from "../common/NavigationBar";
 import BackPressComponent from "../common/BackPressComponent";
 import ViewUtil from "../util/ViewUtil";
 import ImagePicker from "react-native-image-picker";
+import AntDesign from "react-native-vector-icons/AntDesign";
 
 type Props = {};
 const TITLE_COLOR = "#678";
@@ -155,9 +156,9 @@ export default class SharePage extends Component<Props>{
       <View style={styles.container}>
         {navigationBar}
         <TouchableOpacity
-          onPress={() => {
-            NavigationUtil.goPage({theme}, 'CreatePassage')
-          }}
+          // onPress={() => {
+          //   NavigationUtil.goPage({theme}, 'CreatePassage')
+          // }}
         >
           <View>
             {
@@ -170,8 +171,19 @@ export default class SharePage extends Component<Props>{
 
         <View style={styles.buttonFlex}>
           <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
-            <View style={[styles.avatar, styles.avatarContainer, {marginBottom: 30}]}>
-              { this.state.avatarSource === null ? <Text>选择照片</Text> :
+            <View style={[styles.avatar, styles.avatarContainer]}>
+              <AntDesign
+                name={"camerao"}
+                size={32}
+                style={{
+                  marginLeft: 8,
+                  marginBottom:4,
+                  alignSelf: 'center',
+                  color: '#678',
+                }}
+              />
+              { this.state.avatarSource === null ?
+                <Text>选择照片</Text> :
                 <Image style={styles.avatar} source={this.state.avatarSource} />
               }
             </View>
@@ -179,6 +191,16 @@ export default class SharePage extends Component<Props>{
 
           <TouchableOpacity onPress={this.selectVideoTapped.bind(this)}>
             <View style={[styles.avatar, styles.avatarContainer]}>
+              <AntDesign
+                name={"videocamera"}
+                size={32}
+                style={{
+                  marginLeft: 8,
+                  marginBottom:4,
+                  alignSelf: 'center',
+                  color: '#678',
+                }}
+              />
               <Text>选择视频</Text>
             </View>
           </TouchableOpacity>
@@ -197,18 +219,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFF',
-
   },
   avatarContainer: {
     borderColor: '#678',
-    borderWidth: 1 / PixelRatio.get(),
+    borderWidth: 2 / PixelRatio.get(),
     justifyContent: 'center',
     alignItems: 'center'
   },
   avatar: {
     borderRadius: 50,
-    width: 120,
-    height: 120
+    width: 110,
+    height: 110
   },
   buttonFlex: {
     marginTop: 60,

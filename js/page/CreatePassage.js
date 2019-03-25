@@ -71,7 +71,6 @@ export default class CreatePassage extends Component<Props>{
       <View style={styles.container}>
         {navigationBar}
 
-
         { this.state.videoSource &&
         <Text style={{margin: 8, textAlign: 'center'}}>{this.state.videoSource}</Text>
         }
