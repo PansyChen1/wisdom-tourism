@@ -11,6 +11,7 @@ import NavigationUtil from "../navigator/NavigationUtil";
 import {BottomTabBar} from 'react-navigation-tabs';
 import {connect} from "react-redux";
 import FirstPage from "../page/FirstPage";
+import SharePage from "../page/SharePage";
 
 const TABS = {//配置跳转的路由
   FirstPage:{
@@ -53,9 +54,9 @@ const TABS = {//配置跳转的路由
     }
   },
   FavoritePage:{
-    screen: FavoritePage,
+    screen: SharePage,
     navigationOptions:{
-      tabBarLabel:"收藏",
+      tabBarLabel:"分享",
       tabBarIcon:({tintColor,focused}) => (
         <MaterialIcons
           name={"favorite"}
