@@ -1,8 +1,6 @@
 import React, {Component} from "react";
-import ImagePicker from 'react-native-image-picker';
 
 import {
-  Platform,
   StyleSheet,
   Text,
   View,
@@ -11,19 +9,50 @@ import {
   Image,
 
 } from 'react-native';
+import NavigationUtil from "../navigator/NavigationUtil";
+import CreatePassage from "../page/CreatePassage";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import NavigationBar from "../common/NavigationBar";
+import BackPressComponent from "../common/BackPressComponent";
+import ViewUtil from "../util/ViewUtil";
+import ImagePicker from "react-native-image-picker";
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+type Props = {};
+const TITLE_COLOR = "#678";
 
-export default class SharePage extends Component {
-  state = {
-    avatarSource: null,
-    videoSource: null
-  };
+export default class SharePage extends Component<Props>{
+  constructor(props) {
+    super(props);
+    this.state = {
+      avatarSource: null,
+      videoSource: null,
+      canGoBack: false,
+    };
+    this.backPress = new BackPressComponent({backPress: () => this.onBackPress()});
+  }
+
+  /**
+   * 处理android中的物理返回键
+   **/
+  componentDidMount() {
+    this.backPress.componentDidMount();
+  }
+  componentWillUnmount() {
+    this.backPress.componentWillUnmount();
+  }
+
+  onBackPress() {
+    this.onBack();
+    return true;
+  }
+
+  onBack() {
+    if(this.state.canGoBack) {
+      this.webView.goBack();
+    }else {
+      NavigationUtil.goBack(this.props.navigation);
+    }
+  }
 
   //选择图片
   selectPhotoTapped() {
@@ -108,22 +137,52 @@ export default class SharePage extends Component {
   }
 
   render() {
-    return (
+    const {theme} = this.props;
 
+    let statusBar = {
+      backgroundColor: TITLE_COLOR,
+      barStyle: "light-content",
+    };
+
+    let navigationBar = <NavigationBar
+      title={"游记"}
+      statusBar={statusBar}
+      leftButton={ViewUtil.getLeftBackButton(() => this.onBack())}
+      style={{backgroundColor: TITLE_COLOR}}
+    />;
+
+    return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
-          <View style={[styles.avatar, styles.avatarContainer, {marginBottom: 30}]}>
-            { this.state.avatarSource === null ? <Text>选择照片</Text> :
+        {navigationBar}
+        <TouchableOpacity
+          onPress={() => {
+            NavigationUtil.goPage({theme}, 'CreatePassage')
+          }}
+        >
+          <View>
+            {
+              this.state.avatarSource === null ?
+              <Text style={styles.textStyle}>发布一篇游记</Text> :
               <Image style={styles.avatar} source={this.state.avatarSource} />
             }
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={this.selectVideoTapped.bind(this)}>
-          <View style={[styles.avatar, styles.avatarContainer]}>
-            <Text>选择视频</Text>
-          </View>
-        </TouchableOpacity>
+        <View style={styles.buttonFlex}>
+          <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
+            <View style={[styles.avatar, styles.avatarContainer, {marginBottom: 30}]}>
+              { this.state.avatarSource === null ? <Text>选择照片</Text> :
+                <Image style={styles.avatar} source={this.state.avatarSource} />
+              }
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={this.selectVideoTapped.bind(this)}>
+            <View style={[styles.avatar, styles.avatarContainer]}>
+              <Text>选择视频</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
 
         { this.state.videoSource &&
         <Text style={{margin: 8, textAlign: 'center'}}>{this.state.videoSource}</Text>
@@ -137,20 +196,29 @@ export default class SharePage extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
+    backgroundColor: '#FFF',
+
   },
   avatarContainer: {
-    borderColor: '#9B9B9B',
+    borderColor: '#678',
     borderWidth: 1 / PixelRatio.get(),
     justifyContent: 'center',
     alignItems: 'center'
   },
   avatar: {
     borderRadius: 50,
-    width: 100,
-    height: 100
+    width: 120,
+    height: 120
+  },
+  buttonFlex: {
+    marginTop: 60,
+    justifyContent:"space-around",
+    alignItems: 'center',
+    flexDirection: "row",
+  },
+  textStyle: {
+    fontSize: 36,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
-
 });

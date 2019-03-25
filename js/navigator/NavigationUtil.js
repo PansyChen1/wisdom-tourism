@@ -56,5 +56,4 @@ export default class NavigationUtil {
     navigation.goBack();
     navigation.navigate("Register");
   }
-
 }
