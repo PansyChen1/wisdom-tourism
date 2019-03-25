@@ -56,7 +56,7 @@ const TABS = {//配置跳转的路由
   FavoritePage:{
     screen: SharePage,
     navigationOptions:{
-      tabBarLabel:"分享",
+      tabBarLabel:"游记",
       tabBarIcon:({tintColor,focused}) => (
         <MaterialIcons
           name={"favorite"}
