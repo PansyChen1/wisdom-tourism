@@ -62,9 +62,6 @@ export default class SharePage extends Component<Props>{
       cancelButtonTitle: '取消',
       takePhotoButtonTitle: '拍照',
       chooseFromLibraryButtonTitle: '选择照片',
-      customButtons: [
-        {name: 'fb', title: 'Choose Photo from Facebook'},
-      ],
       cameraType: 'back',
       mediaType: 'photo',
       videoQuality: 'high',
