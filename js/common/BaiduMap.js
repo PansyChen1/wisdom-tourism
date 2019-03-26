@@ -14,11 +14,11 @@ import Dimensions from 'Dimensions';
 const { width,height } = Dimensions.get('window');
 
 export default class BaiduMap extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       zoomControlsVisible: true,
-      trafficEnabled: false,
+      trafficEnabled: true,
       baiduHeatMapEnabled: false,
       mapType: MapTypes.NORMAL,
       zoom: 15,
@@ -39,7 +39,25 @@ export default class BaiduMap extends Component {
   }
 
   componentDidMount() {
-
+    // 实现定位
+    Geolocation.getCurrentPosition().then(
+      (data) => {
+        this.setState({
+          zoom:18,
+          markers: [{
+            latitude: data.latitude,
+            longitude: data.longitude,
+            title: "我的位置"
+          }],
+          center: {
+            latitude: data.latitude,
+            longitude: data.longitude
+          }
+        })
+      }
+    ).catch(error => {
+      console.warn(error, "error");
+    })
   }
 
   render() {
@@ -75,6 +93,7 @@ export default class BaiduMap extends Component {
         }}
 
         style={styles.map}
+        onMapClick={(e) => {}}
       >
 
       </MapView>
