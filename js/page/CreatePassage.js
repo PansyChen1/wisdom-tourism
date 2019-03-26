@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import ImagePicker from 'react-native-image-picker';
+import BaiduMap from "../common/BaiduMap";
 
 import {
   Platform,
@@ -70,7 +71,7 @@ export default class CreatePassage extends Component<Props>{
     return (
       <View style={styles.container}>
         {navigationBar}
-
+        <BaiduMap />
         { this.state.videoSource &&
         <Text style={{margin: 8, textAlign: 'center'}}>{this.state.videoSource}</Text>
         }

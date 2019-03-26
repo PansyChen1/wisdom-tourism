@@ -153,9 +153,9 @@ export default class SharePage extends Component<Props>{
       <View style={styles.container}>
         {navigationBar}
         <TouchableOpacity
-          // onPress={() => {
-          //   NavigationUtil.goPage({theme}, 'CreatePassage')
-          // }}
+          onPress={() => {
+            NavigationUtil.goPage({theme}, 'CreatePassage')
+          }}
         >
           <View>
             {
