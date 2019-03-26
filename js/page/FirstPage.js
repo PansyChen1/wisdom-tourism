@@ -13,9 +13,9 @@ const TITLE_COLOR = "#678";
 
 export default class FirstPage extends Component {
   getLocation(){
-    Geolocation.reverseGeoCodeGPS(11.222, 22.22)
+    Geolocation.reverseGeoCodeGPS(116.58, 35.42)
       .then(data => {
-        Alert('reverseGeoCodeGPS', data);
+        alert('reverseGeoCodeGPS:', data);
       })
       .catch(e => {
         console.log(e, "error");
