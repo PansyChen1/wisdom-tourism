@@ -1,59 +1,102 @@
 import React, {Component} from "react";
-import {View, Text, Image} from "react-native";
+import {View, Text, Image, TouchableOpacity} from "react-native";
+import NavigationUtil from "../navigator/NavigationUtil";
 
-export default class ListPage extends Component{
+type Props = {};
+export default class ListPage extends Component<Props>{
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    const {theme} = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.picPosition}>
           <View style={styles.textPosition}>
-            <Image
-              source={require("../images/1.png")}
-              style={styles.picList}
-            />
-            <Text style={styles.text}>景点</Text>
+            <TouchableOpacity
+              onPress={() => {
+                NavigationUtil.goPage({theme}, 'AttractionPage')
+              }}
+            >
+              <Image
+                source={require("../images/1.png")}
+                style={styles.picList}
+              />
+              <Text style={styles.text}>景点</Text>
+            </TouchableOpacity>
           </View>
 
           <View style={styles.textPosition}>
-            <Image
-              source={require("../images/2.png")}
-              style={styles.picList}
-            />
-            <Text style={styles.text}>美食</Text>
+            <TouchableOpacity
+              onPress={() => {
+                NavigationUtil.goPage({theme}, 'FoodPage')
+              }}
+            >
+              <Image
+                source={require("../images/2.png")}
+                style={styles.picList}
+              />
+              <Text style={styles.text}>美食</Text>
+            </TouchableOpacity>
           </View>
 
           <View style={styles.textPosition}>
-            <Image
-              source={require("../images/3.png")}
-              style={styles.picList}
-            />
-            <Text style={styles.text}>民宿</Text>
+            <TouchableOpacity
+              onPress={() => {
+                NavigationUtil.goPage({theme}, 'HousePage')
+              }}
+            >
+              <Image
+                source={require("../images/3.png")}
+                style={styles.picList}
+              />
+              <Text style={styles.text}>民宿</Text>
+            </TouchableOpacity>
           </View>
         </View>
 
         <View style={styles.picPosition}>
           <View style={styles.textPosition}>
-            <Image
-              source={require("../images/4.png")}
-              style={styles.picList}
-            />
-            <Text style={styles.text}>民俗</Text>
+            <TouchableOpacity
+              onPress={() => {
+                NavigationUtil.goPage({theme}, 'CustomPage')
+              }}
+            >
+              <Image
+                source={require("../images/4.png")}
+                style={styles.picList}
+              />
+              <Text style={styles.text}>民俗</Text>
+            </TouchableOpacity>
           </View>
 
           <View style={styles.textPosition}>
-            <Image
-              source={require("../images/5.png")}
-              style={styles.picList}
-            />
-            <Text style={styles.text}>旅游路线</Text>
+            <TouchableOpacity
+              onPress={() => {
+                NavigationUtil.goPage({theme}, 'CustomPage')
+              }}
+            >
+              <Image
+                source={require("../images/5.png")}
+                style={styles.picList}
+              />
+              <Text style={styles.text}>旅游路线</Text>
+            </TouchableOpacity>
           </View>
 
           <View style={styles.textPosition}>
-            <Image
-              source={require("../images/6.png")}
-              style={styles.picList}
-            />
-            <Text style={styles.text}>个性定制</Text>
+            <TouchableOpacity
+              onPress={() => {
+                NavigationUtil.goPage({theme}, 'CreatePassage')
+              }}
+            >
+              <Image
+                source={require("../images/6.png")}
+                style={styles.picList}
+              />
+              <Text style={styles.text}>个性定制</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

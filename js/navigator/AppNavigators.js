@@ -19,6 +19,10 @@ import LoginPage from "../page/LoginPage";
 import RegisterPage from "../page/RegisterPage";
 import FirstPage from "../page/FirstPage";
 import CreatePassage from "../page/CreatePassage";
+import AttractionPage from "../page/AttractionPage";
+import FoodPage from "../page/FoodPage";
+import HousePage from "../page/HousePage";
+import CustomPage from "../page/CustomPage";
 
 export const rootCom = "Init"//设置根路由
 
@@ -55,6 +59,30 @@ const MainNavigator = createStackNavigator({
     screen: SearchPage,
     navigationOptions: {
       header: null,// 可以通过将header设为null 来禁用StackNavigator的Navigation Bar
+    }
+  },
+  AttractionPage: {
+    screen: AttractionPage,
+    navigationOptions:{
+      header: null,// 隐藏顶部的导航
+    }
+  },
+  FoodPage: {
+    screen: FoodPage,
+    navigationOptions:{
+      header: null,// 隐藏顶部的导航
+    }
+  },
+  HousePage: {
+    screen: HousePage,
+    navigationOptions:{
+      header: null,// 隐藏顶部的导航
+    }
+  },
+  CustomPage: {
+    screen: CustomPage,
+    navigationOptions:{
+      header: null,// 隐藏顶部的导航
     }
   },
   CreatePassage: {
