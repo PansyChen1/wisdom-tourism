@@ -1,6 +1,4 @@
 import React, {Component} from "react";
-import ImagePicker from 'react-native-image-picker';
-import BaiduMap from "../common/BaiduMap";
 
 import {
   Platform,
