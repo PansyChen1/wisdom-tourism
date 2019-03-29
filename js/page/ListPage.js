@@ -117,11 +117,8 @@ const styles = {
     marginRight:40
   },
   picList: {
-    height:75,
-    width:75,
-    borderRadius:25,
-    borderWidth:2,
-    borderColor:'#999',
+    height:65,
+    width:65,
   },
   text: {
     fontSize:18,
