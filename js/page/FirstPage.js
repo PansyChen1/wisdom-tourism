@@ -132,7 +132,7 @@ const styles = {
     marginTop:-10
   },
   hotPlace: {
-    marginTop: 20,
+    marginTop: 35,
     justifyContent:"space-around",
   },
   hotPlacePic:{

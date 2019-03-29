@@ -16,13 +16,13 @@ import NavigationUtil from "../navigator/NavigationUtil";
 import NavigationBar from "../common/NavigationBar";
 import ViewUtil from "../util/ViewUtil";
 import BackPressComponent from "../common/BackPressComponent";
-import AntDesign from "react-native-vector-icons/AntDesign";
+// import {Mock} from "mockjs";
 
 const TITLE_COLOR = "#678";
 const width = Dimensions.get('window').width;
 
 const Props = {};
-export default class attractionPage extends Component<Props>{
+export default class AttractionPage extends Component<Props>{
   constructor(props) {
     super(props);
     this.state = {
@@ -36,6 +36,7 @@ export default class attractionPage extends Component<Props>{
    **/
   componentDidMount() {
     this.backPress.componentDidMount();
+    // this._fetch();
   }
   componentWillUnmount() {
     this.backPress.componentWillUnmount();
@@ -53,6 +54,18 @@ export default class attractionPage extends Component<Props>{
       NavigationUtil.goBack(this.props.navigation);
     }
   }
+
+  // _fetch() {
+  //   fetch('http://rap2api.taobao.org/app/mock/163425/api/attractionsList')
+  //     .then((response) => response.json())
+  //     .then((response) => {
+  //       var data = Mock.mock(response);
+  //       console.log(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }
 
   render() {
     const {theme} = this.props;

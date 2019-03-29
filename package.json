@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "GitHubTrending": "^3.0.1",
+    "mockjs": "^1.0.1-beta3",
     "prop-types": "^15.7.2",
     "react": "16.6.3",
     "react-native": "^0.58.5",

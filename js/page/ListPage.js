@@ -20,7 +20,7 @@ export default class ListPage extends Component<Props>{
               }}
             >
               <Image
-                source={require("../images/1.png")}
+                source={require("../images/attraction.png")}
                 style={styles.picList}
               />
               <Text style={styles.text}>景点</Text>
@@ -34,7 +34,7 @@ export default class ListPage extends Component<Props>{
               }}
             >
               <Image
-                source={require("../images/2.png")}
+                source={require("../images/food.png")}
                 style={styles.picList}
               />
               <Text style={styles.text}>美食</Text>
@@ -48,7 +48,7 @@ export default class ListPage extends Component<Props>{
               }}
             >
               <Image
-                source={require("../images/3.png")}
+                source={require("../images/house.png")}
                 style={styles.picList}
               />
               <Text style={styles.text}>民宿</Text>
@@ -64,7 +64,7 @@ export default class ListPage extends Component<Props>{
               }}
             >
               <Image
-                source={require("../images/4.png")}
+                source={require("../images/custom.png")}
                 style={styles.picList}
               />
               <Text style={styles.text}>民俗</Text>
@@ -78,10 +78,10 @@ export default class ListPage extends Component<Props>{
               }}
             >
               <Image
-                source={require("../images/5.png")}
+                source={require("../images/route.png")}
                 style={styles.picList}
               />
-              <Text style={styles.text}>旅游路线</Text>
+              <Text style={styles.text}>路线</Text>
             </TouchableOpacity>
           </View>
 
@@ -92,10 +92,10 @@ export default class ListPage extends Component<Props>{
               }}
             >
               <Image
-                source={require("../images/6.png")}
+                source={require("../images/passage.png")}
                 style={styles.picList}
               />
-              <Text style={styles.text}>个性定制</Text>
+              <Text style={styles.text}>游记</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -111,16 +111,22 @@ const styles = {
   },
   picPosition: {
     flexDirection: "row",
-    justifyContent: "space-around",
-    marginBottom:10
+    justifyContent: "space-between",
+    marginBottom:10,
+    marginLeft:40,
+    marginRight:40
   },
   picList: {
     height:75,
     width:75,
-    borderRadius:50
+    borderRadius:25,
+    borderWidth:2,
+    borderColor:'#999',
   },
   text: {
     fontSize:18,
+    marginTop:10,
+    marginLeft:16
   },
   textPosition:{
     alignItems:"center",
