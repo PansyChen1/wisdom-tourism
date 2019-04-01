@@ -11,7 +11,12 @@ import {
 import { MapView,MapTypes,Geolocation} from 'react-native-baidu-map';
 
 import Dimensions from 'Dimensions';
+import NavigationBar from "./NavigationBar";
+import ViewUtil from "../util/ViewUtil";
+import BackPressComponent from "./BackPressComponent";
+import NavigationUtil from "../navigator/NavigationUtil";
 const { width,height } = Dimensions.get('window');
+const TITLE_COLOR = "#678";
 
 export default class BaiduMap extends Component {
   constructor(props) {
@@ -35,10 +40,16 @@ export default class BaiduMap extends Component {
       ],
       clickMessage: '',
       poiMessage: '',
+      canGoBack: false,
     };
+    this.backPress = new BackPressComponent({backPress: () => this.onBackPress()});
   }
 
+  /**
+   * 处理android中的物理返回键
+   **/
   componentDidMount() {
+    this.backPress.componentDidMount();
     // 实现定位
     Geolocation.getCurrentPosition().then(
       (data) => {
@@ -59,44 +70,68 @@ export default class BaiduMap extends Component {
       console.warn(error, "error");
     })
   }
+  componentWillUnmount() {
+    this.backPress.componentWillUnmount();
+  }
+
+  onBackPress() {
+    this.onBack();
+    return true;
+  }
+
+  onBack() {
+    if(this.state.canGoBack) {
+      this.webView.goBack();
+    }else {
+      NavigationUtil.goBack(this.props.navigation);
+    }
+  }
 
   render() {
+    let navigationBar = <NavigationBar
+      title={"导航"}
+      leftButton={ViewUtil.getLeftBackButton(() => this.onBack())}
+      style={{backgroundColor: TITLE_COLOR}}
+    />;
     return (
-      <MapView
-        zoomControlsVisible={this.state.zoomControlsVisible} //默认true,是否显示缩放控件,仅支持android
-        trafficEnabled={this.state.trafficEnabled} //默认false,是否显示交通线
-        baiduHeatMapEnabled={this.state.baiduHeatMapEnabled} //默认false,是否显示热力图
-        mapType={this.state.mapType} //地图模式,NORMAL普通 SATELLITE卫星图
-        zoom={this.state.zoom} //缩放等级,默认为10
-        center={this.state.center} // 地图中心位置
-        markers={this.state.markers}
+      <View>
+        {navigationBar}
+        <MapView
+          zoomControlsVisible={this.state.zoomControlsVisible} //默认true,是否显示缩放控件,仅支持android
+          trafficEnabled={this.state.trafficEnabled} //默认false,是否显示交通线
+          baiduHeatMapEnabled={this.state.baiduHeatMapEnabled} //默认false,是否显示热力图
+          mapType={this.state.mapType} //地图模式,NORMAL普通 SATELLITE卫星图
+          zoom={this.state.zoom} //缩放等级,默认为10
+          center={this.state.center} // 地图中心位置
+          markers={this.state.markers}
 
-        onMapLoaded={(e) => { //地图加载事件
-          Geolocation.getCurrentPosition()
-            .then(data => {
-              console.log(data)
-              // this.setState({
-              //     center: {
-              //         longitude: data.longitude,
-              //         latitude: data.latitude
-              //     },
-              //     markers: [{
-              //         longitude: data.longitude,
-              //         latitude: data.latitude,
-              //         title: data.district + data.street
-              //     }]
-              // })
-            })
-            .catch(e => {
-              console.warn(e, 'error');
-            })
-        }}
+          onMapLoaded={(e) => { //地图加载事件
+            Geolocation.getCurrentPosition()
+              .then(data => {
+                console.log(data)
+                // this.setState({
+                //     center: {
+                //         longitude: data.longitude,
+                //         latitude: data.latitude
+                //     },
+                //     markers: [{
+                //         longitude: data.longitude,
+                //         latitude: data.latitude,
+                //         title: data.district + data.street
+                //     }]
+                // })
+              })
+              .catch(e => {
+                console.warn(e, 'error');
+              })
+          }}
 
-        style={styles.map}
-        onMapClick={(e) => {}}
-      >
+          style={styles.map}
+          onMapClick={(e) => {}}
+        >
 
-      </MapView>
+        </MapView>
+      </View>
     );
   }
 }
@@ -108,7 +143,7 @@ const styles = StyleSheet.create({
   },
   map: {
     width: width,
-    height: height - 300,
+    height: height,
     marginBottom: 5,
   },
   list: {

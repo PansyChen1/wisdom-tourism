@@ -1,17 +1,14 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
 import {createBottomTabNavigator,createAppContainer, } from "react-navigation";
 import PopularPage from "../page/PopularPage";
-import TrendingPage from '../page/TrendingPage';
-import FavoritePage from "../page/FavoritePage";
 import MyPage from "../page/MyPage";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import NavigationUtil from "../navigator/NavigationUtil";
 import {BottomTabBar} from 'react-navigation-tabs';
 import {connect} from "react-redux";
 import FirstPage from "../page/FirstPage";
 import SharePage from "../page/SharePage";
+import ModalPage from "../common/ModalPage";
 
 const TABS = {//配置跳转的路由
   FirstPage:{
@@ -41,9 +38,9 @@ const TABS = {//配置跳转的路由
     }
   },
   TrendingPage:{
-    screen: TrendingPage,
+    screen: ModalPage,
     navigationOptions:{
-      tabBarLabel:"个性化",
+      tabBarLabel:"自助导游",
       tabBarIcon:({tintColor,focused}) => (
         <AntDesign
           name={"customerservice"}
@@ -79,7 +76,7 @@ const TABS = {//配置跳转的路由
       ),
     }
   },
-}
+};
 type Props = {};
 class DynamicTabNavigator extends Component<Props> {
   constructor(props){

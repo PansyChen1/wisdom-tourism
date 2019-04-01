@@ -23,6 +23,8 @@ import AttractionPage from "../page/AttractionPage";
 import FoodPage from "../page/FoodPage";
 import HousePage from "../page/HousePage";
 import CustomPage from "../page/CustomPage";
+import AnotherDetailPage from "../page/AnotherDetailPage";
+import BaiduMap from "../common/BaiduMap";
 
 export const rootCom = "Init"//设置根路由
 
@@ -87,6 +89,18 @@ const MainNavigator = createStackNavigator({
   },
   CreatePassage: {
     screen: CreatePassage,
+    navigationOptions:{
+      header: null,// 隐藏顶部的导航
+    }
+  },
+  AnotherDetailPage: {
+    screen: AnotherDetailPage,
+    navigationOptions:{
+      header: null,// 隐藏顶部的导航
+    }
+  },
+  BaiduMap: {
+    screen: BaiduMap,
     navigationOptions:{
       header: null,// 隐藏顶部的导航
     }

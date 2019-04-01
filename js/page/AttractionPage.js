@@ -180,7 +180,7 @@ export default class AttractionPage extends Component<Props>{
           renderItem={({item}) =>
             <TouchableOpacity
               onPress={() => {
-                NavigationUtil.goPage({theme}, 'HousePage')
+                NavigationUtil.goPage({theme}, 'AnotherDetailPage')
               }}
             >
               <View style={styles.item}>
