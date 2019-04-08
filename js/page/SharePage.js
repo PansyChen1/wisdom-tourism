@@ -7,11 +7,10 @@ import {
   PixelRatio,
   TouchableOpacity,
   Image,
+  TextInput
 
 } from 'react-native';
 import NavigationUtil from "../navigator/NavigationUtil";
-import CreatePassage from "../page/CreatePassage";
-import Ionicons from "react-native-vector-icons/Ionicons";
 import NavigationBar from "../common/NavigationBar";
 import BackPressComponent from "../common/BackPressComponent";
 import ViewUtil from "../util/ViewUtil";
@@ -91,10 +90,8 @@ export default class SharePage extends Component<Props>{
       }
       else {
         let source = { uri: response.uri };
-
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
         this.setState({
           avatarSource: source
         });
@@ -134,6 +131,26 @@ export default class SharePage extends Component<Props>{
     });
   }
 
+  renderRightButton() {
+    const {theme} = this.props;
+    return <TouchableOpacity
+      onPress={() => {
+        NavigationUtil.goPage({theme}, 'firstPage')
+      }}
+    >
+      <View style={{padding: 5, marginRight: 8}}>
+        <Text
+          style={{
+            marginRight: 8,
+            alignSelf: 'center',
+            color: 'white',
+            fontSize: 18
+          }}
+        >发送</Text>
+      </View>
+    </TouchableOpacity>
+  }
+
   render() {
     const {theme} = this.props;
 
@@ -147,26 +164,19 @@ export default class SharePage extends Component<Props>{
       statusBar={statusBar}
       leftButton={ViewUtil.getLeftBackButton(() => this.onBack())}
       style={{backgroundColor: TITLE_COLOR}}
+      rightButton={this.renderRightButton()}
     />;
 
     return (
       <View style={styles.container}>
         {navigationBar}
-        <TouchableOpacity
-          onPress={() => {
-            NavigationUtil.goPage({theme}, 'CreatePassage')
-          }}
-        >
-          <View>
-            {
-              this.state.avatarSource === null ?
-              <Text style={styles.textStyle}>发布一篇游记</Text> :
-              <Image style={styles.avatar} source={this.state.avatarSource} />
-            }
-          </View>
-        </TouchableOpacity>
+        <TextInput
+          placeholder={"分享新鲜事..."}
+          style={{fontSize: 18}}
+        ></TextInput>
 
         <View style={styles.buttonFlex}>
+          {this.state.avatarSource === null ?
           <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
             <View style={[styles.avatar, styles.avatarContainer]}>
               <AntDesign
@@ -179,12 +189,29 @@ export default class SharePage extends Component<Props>{
                   color: '#678',
                 }}
               />
-              { this.state.avatarSource === null ?
-                <Text>选择照片</Text> :
-                <Image style={styles.avatar} source={this.state.avatarSource} />
-              }
+                <Text>选择照片</Text>
+              {/*{ this.state.avatarSource === null ?*/}
+                {/*<Text>选择照片</Text> :*/}
+                {/*<View>*/}
+                  {/*<TouchableOpacity*/}
+                    {/*onPress={() => {*/}
+                      {/*NavigationUtil.goPage({theme}, 'EditPassage')*/}
+                    {/*}}*/}
+                  {/*>*/}
+                    {/*<Text>testaaa</Text>*/}
+                  {/*</TouchableOpacity>*/}
+                {/*</View>*/}
+              {/*}*/}
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> :
+            <TouchableOpacity
+              onPress={() => {
+                NavigationUtil.goPage({theme}, 'EditPassage')
+              }}
+            >
+              <Text>testaaa</Text>
+            </TouchableOpacity>
+          }
 
           <TouchableOpacity onPress={this.selectVideoTapped.bind(this)}>
             <View style={[styles.avatar, styles.avatarContainer]}>
