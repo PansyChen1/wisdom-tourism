@@ -4555,7 +4555,7 @@ prompts@^2.0.1:
     kleur "^3.0.2"
     sisteransi "^1.0.0"
 
-prop-types@^15.5.10, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.10, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "http://registry.npm.taobao.org/prop-types/download/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha1-UsQedbjIfnK52TYOAga5ncv/psU=
@@ -4690,6 +4690,13 @@ react-native-image-picker@^0.28.0:
   version "0.28.0"
   resolved "http://registry.npm.taobao.org/react-native-image-picker/download/react-native-image-picker-0.28.0.tgz#e3f26df170ea932e9c0404624fbced2f59a300e3"
   integrity sha1-4/Jt8XDqky6cBARiT7ztL1mjAOM=
+
+react-native-modal-dropdown@^0.6.2:
+  version "0.6.2"
+  resolved "http://registry.npm.taobao.org/react-native-modal-dropdown/download/react-native-modal-dropdown-0.6.2.tgz#da6027b3546d2031fbce46242bffc95561e13599"
+  integrity sha1-2mAns1RtIDH7zkYkK//JVWHhNZk=
+  dependencies:
+    prop-types "^15.6.0"
 
 react-native-safe-area-view@^0.12.0:
   version "0.12.0"

@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 import NavigationUtil from "../navigator/NavigationUtil";
 
-
 const width = Dimensions.get('window').width;
 export default class ModalPage extends Component {
 

@@ -7,7 +7,7 @@ import {
   PixelRatio,
   TouchableOpacity,
   Image,
-  TextInput
+  TextInput, Dimensions
 
 } from 'react-native';
 import NavigationUtil from "../navigator/NavigationUtil";
@@ -20,6 +20,8 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 type Props = {};
 const TITLE_COLOR = "#678";
 
+const height = Dimensions.get('window').height;
+
 export default class SharePage extends Component<Props>{
   constructor(props) {
     super(props);
@@ -27,6 +29,8 @@ export default class SharePage extends Component<Props>{
       avatarSource: null,
       videoSource: null,
       canGoBack: false,
+
+      height: 0
     };
     this.backPress = new BackPressComponent({backPress: () => this.onBackPress()});
   }
@@ -173,6 +177,7 @@ export default class SharePage extends Component<Props>{
         <TextInput
           placeholder={"分享新鲜事..."}
           style={{fontSize: 18}}
+          multiline={true}
         ></TextInput>
 
         <View style={styles.buttonFlex}>
@@ -246,17 +251,17 @@ const styles = StyleSheet.create({
   },
   avatarContainer: {
     borderColor: '#678',
-    borderWidth: 2 / PixelRatio.get(),
+    borderWidth: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   avatar: {
-    borderRadius: 50,
-    width: 110,
-    height: 110
+    borderRadius: 5,
+    width: 80,
+    height: 80
   },
   buttonFlex: {
-    marginTop: 60,
+    marginTop: height/2,
     justifyContent:"space-around",
     alignItems: 'center',
     flexDirection: "row",
