@@ -1,17 +1,13 @@
 import React, {Component} from 'react';
 import {Button, Platform, StyleSheet, Text, View, TouchableOpacity, ScrollView} from 'react-native';
-import actions from "../action";
-import {connect} from "react-redux";
 import NavigationUtil from "../navigator/NavigationUtil";
-import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import NavigationBar from "../common/NavigationBar";
 import {MORE_MENU} from "../common/MORE_MENU";
 import GlobalStyles from "../res/styles/GlobalStyles";
 import ViewUtil from "../util/ViewUtil";
 import BackPressComponent from "../common/BackPressComponent";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import AntDesign from "react-native-vector-icons/AntDesign";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const THEME_COLOR = "#678";
 type Props = {};
@@ -101,7 +97,7 @@ export default class MyPage extends Component<Props> {
                   NavigationUtil.goPage({theme}, 'EditInformation')
                 }}
               >
-                <Feather
+                <MaterialIcons
                   name="edit"
                   size={30}
                   style={{

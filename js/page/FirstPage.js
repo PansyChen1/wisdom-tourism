@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Scroll from "../common/Scroll";
 import NavigationBar from "../common/NavigationBar";
-import {DeviceInfo, TouchableOpacity, View, Text,Image} from "react-native";
+import {DeviceInfo, TouchableOpacity, View, Text, Image, ScrollView, FlatList, Dimensions} from "react-native";
 import NavigationUtil from "../navigator/NavigationUtil";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
@@ -10,8 +10,26 @@ import {Geolocation} from "react-native-baidu-map";
 //
 // const Geolocation = require('Geolocation');
 const TITLE_COLOR = "#678";
+const width = Dimensions.get('window').width;
 
 export default class FirstPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      topic: [
+        {
+          title: '岁末清扫有它们，体验大不同',
+          describe: '更轻松、更美好的大扫除攻略',
+          price: '9.9元起',
+        },
+        {
+          title: '新年一点红，幸运一整年',
+          describe: '那些让你“红”运当头的好物',
+          price: '9.9元起',
+        },
+      ]
+    }
+  }
   getLocation(){
     Geolocation.reverseGeoCodeGPS(116.58, 35.42)
       .then(data => {
@@ -77,6 +95,23 @@ export default class FirstPage extends Component {
       </View>
     </TouchableOpacity>
   }
+
+
+  renderTopicItem = ({ item }) => {
+    return (
+      <TouchableOpacity style={styles.topicItem}>
+        <Image source={require('../images/1.png')} style={styles.topicImg} />
+        <View style={styles.topicContainer}>
+          <View style={styles.topicText}>
+            <Text style={styles.topicTitle}>{item.title}</Text>
+            <Text style={styles.topicDesc}>{item.describe}</Text>
+          </View>
+          <Text style={styles.topicPrice}>{item.price}</Text>
+        </View>
+      </TouchableOpacity>
+    )
+  };
+
   render() {
     let statusBar = {
       backgroundColor: TITLE_COLOR,
@@ -93,34 +128,32 @@ export default class FirstPage extends Component {
     return (
       <View style={{flex: 1, marginTop: DeviceInfo.isIPhoneX_deprecated ? 30 : 0}}>
         {navigationBar}
-        <Scroll/>
-        <ListPage/>
+        <ScrollView>
+          <Scroll/>
+          <ListPage/>
 
-        <View style={styles.hotPlace}>
-          <Text style={{fontSize:20, alignSelf:"center"}}>
-            ---------- 热门目的地
-            <AntDesign
-              name={"right"}
-              size={18}
-            />
-            <Text> ----------</Text>
-          </Text>
-          <View style={styles.hotPlacePic}>
-            <Image
-              source={require("../images/1.png")}
-              style={{width:100,height:60}}
-            />
-            <Image
-              source={require("../images/1.png")}
-              style={{width:100,height:60}}
-            />
-            <Image
-              source={require("../images/1.png")}
-              style={{width:100,height:60}}
-            />
+          <View style={styles.hotPlace}>
+            <Text style={{fontSize:20, alignSelf:"center"}}>
+              ---------- 热门目的地
+              <AntDesign
+                name={"right"}
+                size={18}
+              />
+              <Text> ----------</Text>
+            </Text>
+            <View style={styles.hotPlacePic}>
+              <FlatList
+                data={this.state.topic}
+                keyExtractor={(item, index) => index}
+                renderItem={this.renderTopicItem}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+              />
+
+            </View>
+
           </View>
-
-        </View>
+        </ScrollView>
       </View>
     )
   }
@@ -139,5 +172,46 @@ const styles = {
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop:20,
-  }
+  },
+  topic: {
+    width: width,
+    alignItems:'center',
+    backgroundColor: '#fff',
+    paddingBottom:10,
+    marginBottom:10,
+  },
+  topicHead:{
+    fontSize:16,
+    color:'#666',
+    padding:15,
+  },
+  topicItem: {
+    width: width*0.7,
+    marginLeft:15,
+  },
+  topicImg: {
+    width: width*0.7,
+    height: width*0.4,
+    borderWidth:0.5,
+    borderColor:'#cdcdcd',
+    borderRadius:2,
+  },
+  topicContainer:{
+    flexDirection: 'row',
+    justifyContent:'space-between',
+    marginTop:10,
+  },
+  topicTitle:{
+    fontSize:16,
+    color:'#666',
+  },
+  topicDesc:{
+    fontSize:13,
+    color:'#999',
+    marginTop:3,
+  },
+  topicPrice:{
+    fontSize:14,
+    color:'#b4282d',
+  },
 };
