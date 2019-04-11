@@ -10,6 +10,8 @@ import {MORE_MENU} from "../common/MORE_MENU";
 import GlobalStyles from "../res/styles/GlobalStyles";
 import ViewUtil from "../util/ViewUtil";
 import BackPressComponent from "../common/BackPressComponent";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import AntDesign from "react-native-vector-icons/AntDesign";
 
 const THEME_COLOR = "#678";
 type Props = {};
@@ -73,15 +75,16 @@ export default class MyPage extends Component<Props> {
       // rightButton={this.getRightButton()}
       leftButton={ViewUtil.getLeftBackButton(() => this.onBack())}
     />;
+    const {theme} = this.props;
 
     return (
       <View style={GlobalStyles.root_container}>
         {navigationBar}
 
         <ScrollView>
-          <TouchableOpacity
+          <View
             style={styles.item}
-            onPress={() => this.onClick(MORE_MENU.About)}
+            // onPress={() => this.onClick(MORE_MENU.About)}
           >
             <View style={styles.about_left}>
               <Ionicons
@@ -93,8 +96,22 @@ export default class MyPage extends Component<Props> {
                 }}
               />
               <Text>用户名</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  NavigationUtil.goPage({theme}, 'EditInformation')
+                }}
+              >
+                <Feather
+                  name="edit"
+                  size={30}
+                  style={{
+                    marginLeft: 260,
+                    color: THEME_COLOR
+                  }}
+                />
+              </TouchableOpacity>
             </View>
-          </TouchableOpacity>
+          </View>
 
           <View style={GlobalStyles.line}/>
           {this.getItem(MORE_MENU.Tutorial)}

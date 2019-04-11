@@ -1,11 +1,9 @@
 import React, {Component} from "react";
 
 import {
-  Platform,
   StyleSheet,
   Text,
   View,
-  PixelRatio,
   TouchableOpacity,
   Image,
   FlatList,
@@ -16,7 +14,6 @@ import NavigationUtil from "../navigator/NavigationUtil";
 import NavigationBar from "../common/NavigationBar";
 import ViewUtil from "../util/ViewUtil";
 import BackPressComponent from "../common/BackPressComponent";
-// import {Mock} from "mockjs";
 
 const TITLE_COLOR = "#678";
 const width = Dimensions.get('window').width;
