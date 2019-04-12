@@ -5,6 +5,7 @@ import NavigationUtil from "../navigator/NavigationUtil";
 import NavigationBar from "../common/NavigationBar";
 import ViewUtil from "../util/ViewUtil";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import ImagePicker from "react-native-image-picker";
 
 
 const TITLE_COLOR = "#678";
@@ -59,6 +60,40 @@ const Props = {};
      }
    }
 
+   selectPhotoTapped() {
+     const options = {
+       title: '选择头像',
+       cancelButtonTitle: '取消',
+       takePhotoButtonTitle: '拍照',
+       chooseFromLibraryButtonTitle: '选择照片',
+       cameraType: 'back',
+       mediaType: 'photo',
+       videoQuality: 'high',
+       durationLimit: 10,
+       maxWidth: 300,
+       maxHeight: 300,
+       quality: 0.8,//图片质量
+       angle: 0,
+       allowsEditing: true,
+       noData: false,
+       storageOptions: {
+         skipBackup: true,
+         path:'images'
+       }
+     };
+     let that = this;
+
+     ImagePicker.showImagePicker(options, (response) => {
+       let avatarData = 'data:image/jpeg;base64,' + response.data;
+       let user = that.state.user;
+
+       user.avatar = avatarData;
+       that.setState({
+         user: user
+       });
+     });
+   }
+
    render() {
      let statusBar = {
        backgroundColor: TITLE_COLOR,
@@ -78,7 +113,9 @@ const Props = {};
          {navigationBar}
          {
            !user.avatar
-           ? <TouchableOpacity>
+           ? <TouchableOpacity
+               onPress={this.selectPhotoTapped.bind(this)}
+             >
                <View style={styles.avatarBox}>
                  <Image
                    source={{uri: user.avatar}}
@@ -90,7 +127,10 @@ const Props = {};
              :
              <View style={styles.avatarContainer}>
                <Text style={styles.avatarTip}>添加头像</Text>
-               <TouchableOpacity style={styles.avatarBox}>
+               <TouchableOpacity
+                 onPress={this.selectPhotoTapped.bind(this)}
+                 style={styles.avatarBox}
+               >
                  <AntDesign
                    name={'upload'}
                    style={styles.plusIcon}
