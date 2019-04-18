@@ -88,11 +88,11 @@ export default class CustomPage extends Component<Props>{
           data={[
             {
               "_id": "l)",
-              "attraction_name": "台儿庄古城",
-              "attraction_pic": "http://www.qlxcly.com/Public/Upload/RecomPruduct/m_589d32da4792e.jpg",
+              "attraction_name": "孔子生迹园",
+              "attraction_pic": "http://www.qlxcly.com/Public/business/product/1497417487.png",
               "attraction_star": "★★★★",
-              "attraction_tag": "古城",
-              "attraction_price": 19,
+              "attraction_tag": "名人故居",
+              "attraction_price": 15,
               "attraction_comments": [
                 {
                   "attraction_comment_describe": "果八法发",
@@ -103,11 +103,11 @@ export default class CustomPage extends Component<Props>{
             },
             {
               "_id": "q&d",
-              "attraction_name": "青岛海泉湾",
-              "attraction_pic": "http://www.qlxcly.com/Public/Upload/RecomPruduct/m_58b4f9f5751da.jpg",
+              "attraction_name": "万紫千红度假区",
+              "attraction_pic": "http://www.qlxcly.com/Public/business/product/1489108552.jpeg",
               "attraction_star": "★★★",
-              "attraction_tag": "海湾",
-              "attraction_price": 136,
+              "attraction_tag": "度假区",
+              "attraction_price": 20,
               "attraction_comments": [
                 {
                   "attraction_comment_describe": "农际外增",

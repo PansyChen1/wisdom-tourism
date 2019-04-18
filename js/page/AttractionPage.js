@@ -85,11 +85,11 @@ export default class AttractionPage extends Component<Props>{
           data={[
             {
               "_id": "l)",
-              "attraction_name": "台儿庄古城",
+              "attraction_name": "任城区古城",
               "attraction_pic": "http://www.qlxcly.com/Public/Upload/RecomPruduct/m_589d32da4792e.jpg",
               "attraction_star": "★★★★",
               "attraction_tag": "古城",
-              "attraction_price": 19,
+              "attraction_price": 30,
               "attraction_comments": [
                 {
                   "attraction_comment_describe": "果八法发",
@@ -100,11 +100,11 @@ export default class AttractionPage extends Component<Props>{
             },
             {
               "_id": "q&d",
-              "attraction_name": "青岛海泉湾",
+              "attraction_name": "泗水县水库",
               "attraction_pic": "http://www.qlxcly.com/Public/Upload/RecomPruduct/m_58b4f9f5751da.jpg",
               "attraction_star": "★★★",
-              "attraction_tag": "海湾",
-              "attraction_price": 136,
+              "attraction_tag": "水库",
+              "attraction_price": "免费",
               "attraction_comments": [
                 {
                   "attraction_comment_describe": "农际外增",
@@ -115,11 +115,11 @@ export default class AttractionPage extends Component<Props>{
             },
             {
               "_id": ")NUVI",
-              "attraction_name": "跑马岭",
+              "attraction_name": "曲阜动物园",
               "attraction_pic": "http://www.qlxcly.com/Public/Upload/RecomPruduct/m_5593a8f7bfd03.jpg",
               "attraction_star": "★★★★",
-              "attraction_tag": "古都",
-              "attraction_price": 118,
+              "attraction_tag": "游玩",
+              "attraction_price": 30,
               "attraction_comments": [
                 {
                   "attraction_comment_describe": "亲好号世亲此",
@@ -129,27 +129,12 @@ export default class AttractionPage extends Component<Props>{
               "attraction_description": "何置整马复"
             },
             {
-              "_id": "eIwNH",
-              "attraction_name": "章丘树莓",
-              "attraction_pic": "http://www.qlxcly.com/Public/Upload/RecomPruduct/m_58982817626e1.jpg",
-              "attraction_star": "★★★★",
-              "attraction_tag": "古都",
-              "attraction_price": 39,
-              "attraction_comments": [
-                {
-                  "attraction_comment_describe": "效眼权公",
-                  "attraction_comment_pic": "https://segmentfault.com/img/bVXki7?w=532&h=335"
-                }
-              ],
-              "attraction_description": "重海强后离组"
-            },
-            {
               "_id": "l)",
-              "attraction_name": "长清油菜花",
+              "attraction_name": "人民公园",
               "attraction_pic": "http://www.qlxcly.com/Public/Upload/RecomPruduct/m_58a69eb507f0d.jpg",
               "attraction_star": "★★★★",
               "attraction_tag": "自然",
-              "attraction_price": 19,
+              "attraction_price": "免费",
               "attraction_comments": [
                 {
                   "attraction_comment_describe": "果八法发",

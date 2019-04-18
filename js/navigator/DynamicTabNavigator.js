@@ -27,7 +27,7 @@ const TABS = {//配置跳转的路由
   PopularPage:{
     screen: PopularPage,
     navigationOptions:{
-      tabBarLabel:"旅游信息",
+      tabBarLabel:"特色活动",
       tabBarIcon:({tintColor,focused}) => (
         <MaterialIcons
           name={"whatshot"}

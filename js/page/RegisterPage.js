@@ -74,20 +74,20 @@ export default class RegisterPage extends Component<Props>{
               onChangeText={(telephone) => this.setState({telephone})}
             />
           </View>
-          <View style={LoginStyles.row}>
-            <MaterialCommunityIcons
-              name={'email-outline'}
-              size={24}
-              style={{paddingRight: 4}}
-            />
-            <TextInput
-              placeholder="邮箱"
-              ecureTextEntry={true}//隐藏输入内容
-              underlineColorAndroid={'transparent'}
-              style={LoginStyles.username}
-              onChangeText={(email) => this.setState({email})}
-            />
-          </View>
+          {/*<View style={LoginStyles.row}>*/}
+            {/*<MaterialCommunityIcons*/}
+              {/*name={'email-outline'}*/}
+              {/*size={24}*/}
+              {/*style={{paddingRight: 4}}*/}
+            {/*/>*/}
+            {/*<TextInput*/}
+              {/*placeholder="邮箱"*/}
+              {/*ecureTextEntry={true}//隐藏输入内容*/}
+              {/*underlineColorAndroid={'transparent'}*/}
+              {/*style={LoginStyles.username}*/}
+              {/*onChangeText={(email) => this.setState({email})}*/}
+            {/*/>*/}
+          {/*</View>*/}
           <View style={LoginStyles.row}>
             <AntDesign
               name={'lock'}
