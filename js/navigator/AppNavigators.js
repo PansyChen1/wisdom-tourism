@@ -21,6 +21,7 @@ import CustomPage from "../page/CustomPage";
 import AnotherDetailPage from "../page/AnotherDetailPage";
 import BaiduMap from "../common/BaiduMap";
 import EditInformation from "../page/EditInformation";
+import ActivityDetailPage from "../page/ActivityDetailPage";
 
 export const rootCom = "Init"//设置根路由
 
@@ -103,6 +104,12 @@ const MainNavigator = createStackNavigator({
   },
   EditInformation: {
     screen: EditInformation,
+    navigationOptions: {
+      header: null,
+    }
+  },
+  ActivityDetailPage: {
+    screen: ActivityDetailPage,
     navigationOptions: {
       header: null,
     }

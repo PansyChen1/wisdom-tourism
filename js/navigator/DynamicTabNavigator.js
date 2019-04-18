@@ -9,6 +9,7 @@ import {connect} from "react-redux";
 import FirstPage from "../page/FirstPage";
 import SharePage from "../page/SharePage";
 import ModalPage from "../common/ModalPage";
+import ActivityPage from "../page/ActivityPage";
 
 const TABS = {//配置跳转的路由
   FirstPage:{
@@ -24,8 +25,8 @@ const TABS = {//配置跳转的路由
       )
     }
   },
-  PopularPage:{
-    screen: PopularPage,
+  ActivityPage:{
+    screen: ActivityPage,
     navigationOptions:{
       tabBarLabel:"特色活动",
       tabBarIcon:({tintColor,focused}) => (
@@ -88,8 +89,8 @@ class DynamicTabNavigator extends Component<Props> {
     if(this.Tabs) {
       return this.Tabs;
     }
-    const {FirstPage, PopularPage, TrendingPage, FavoritePage, MyPage} = TABS;
-    const tabs = {FirstPage, PopularPage, TrendingPage, FavoritePage, MyPage};//根据需要定制显示的tab
+    const {FirstPage, ActivityPage, TrendingPage, FavoritePage, MyPage} = TABS;
+    const tabs = {FirstPage, ActivityPage, TrendingPage, FavoritePage, MyPage};//根据需要定制显示的tab
     // PopularPage.navigationOptions.tabBarLabel="最新";//动态修改tab的名称
     return this.Tabs = createAppContainer(createBottomTabNavigator(tabs, {
       tabBarComponent: props => {
