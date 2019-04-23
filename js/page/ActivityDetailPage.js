@@ -1,5 +1,17 @@
 import React, {Component} from 'react';
-import {WebView, StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, FlatList, Button} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  Dimensions,
+  FlatList,
+  Button,
+  Modal,
+  Alert
+} from 'react-native';
 import NavigationBar from "../common/NavigationBar";
 import ViewUtil from "../util/ViewUtil";
 import NavigationUtil from "../navigator/NavigationUtil";
@@ -7,6 +19,7 @@ import BackPressComponent from "../common/BackPressComponent";
 import Feather from "react-native-vector-icons/Feather";
 
 import ModalDropdown from 'react-native-modal-dropdown';
+import OrderPage from "./OrderPage";
 
 type Props = {};
 const TITLE_COLOR = "#678";
@@ -16,6 +29,10 @@ export default class AnotherDetailPage extends Component<Props> {
     super(props);
     this.state = {
       canGoBack: false,
+
+      animationType: 'none',//none slide fade
+      modalVisible: true,//模态场景是否可见
+      transparent: true,//是否透明显示
     };
     this.backPress = new BackPressComponent({backPress: () => this.onBackPress()});
   }
@@ -71,109 +88,182 @@ export default class AnotherDetailPage extends Component<Props> {
     )
   }
 
+  // modalShow() {
+  //   return (
+  //     <Alert></Alert>
+  //   )
+  // }
+
   render() {
     const {theme} = this.props;
     let navigationBar = <NavigationBar
-      title={"详情页"}
+      title={"活动详情页"}
       leftButton={ViewUtil.getLeftBackButton(() => this.onBack())}
       style={{backgroundColor: TITLE_COLOR}}
       rightButton={this.renderRightButton()}
     />;
+    let alertMessage = '姓名：' + '手机号：' + '身份证号：';
     return (
       <View style={styles.container}>
         {navigationBar}
-        <Image
-          source={{uri:"http://www.qlxcly.com/Public/Upload/RecomPruduct/m_58a69eb507f0d.jpg"}}
-          style={{width:width,height:250}}
-        />
-        <View style={styles.content}>
-          <FlatList
-            data={[
-              {
-                "_id": "l)",
-                "attraction_name": "人民公园",
-                "attraction_pic": "http://www.qlxcly.com/Public/Upload/RecomPruduct/m_58a69eb507f0d.jpg",
-                "attraction_star": "★★★★",
-                "attraction_tag": "自然",
-                "attraction_price": "免费",
-                "attraction_comments": [
-                  {
-                    "attraction_comment_describe": "果八法发",
-                    "attraction_comment_pic": "https://segmentfault.com/img/bVXki7?w=532&h=335"
-                  }
-                ],
-                "attraction_description": "台儿庄古城"
-              },
-            ]}
-            renderItem={({item}) =>
-              <TouchableOpacity
-                onPress={() => {
-                  NavigationUtil.goPage({theme}, 'AnotherDetailPage')
-                }}
-              >
-                <View style={styles.item}>
-                  <View style={{flexDirection: "row", justifyContent: "space-between"}}>
-                    <View>
-                      <Text style={styles.attraction_name}>{item.attraction_name}</Text>
+        <ScrollView>
+          <Image
+            // source={{uri:"../images/activityExample"}}
+            source={require('../images/activityExample.jpg')}
+            style={{width:width,height:250}}
+          />
+          <View style={styles.content}>
+            <FlatList
+              data={[
+                {
+                  "_id": "l)",
+                  "attraction_name": "邹城张庄镇桑北村果园",
+                  "attraction_pic": "http://www.qlxcly.com/Public/business/product/55c9ba10d1326.jpg",
+                  "attraction_star": "★★★★",
+                  "attraction_tag": "采摘",
+                  "attraction_price": "30",
+                  "attraction_comments": [
+                    {
+                      "attraction_comment_describe": "果八法发",
+                      "attraction_comment_pic": "https://segmentfault.com/img/bVXki7?w=532&h=335"
+                    }
+                  ],
+                  "attraction_description": "台儿庄古城"
+                },
+              ]}
+              renderItem={({item}) =>
+                <TouchableOpacity>
+                  <View style={styles.item}>
+                    <View style={{flexDirection: "row", justifyContent: "space-between"}}>
+                      <View>
+                        <View style={styles.title}>
+                          <Text style={styles.attraction_name}>{item.attraction_name}</Text>
 
-                      <Button>立即预订</Button>
-                      <View style={{flexDirection: "row", justifyContent: "center", marginTop: 10}}>
-                        <Text style={{fontSize: 16}}>推荐指数：</Text>
-                        <Text style={{marginRight: width/7.1}}>{item.attraction_star}</Text>
-                      </View>
-                      <Text style={{color: "#f55",fontSize: 18,marginTop:10}}>¥{item.attraction_price}</Text>
-                      <View style={{flexDirection: "row", justifyContent: "space-between", marginTop: 10}}>
-                        <Text style={styles.attraction_tag}>{item.attraction_tag}</Text>
-                      </View>
-                    </View>
-                  </View>
-                </View>
-              </TouchableOpacity>
-            }
-          />
-          <FlatList
-            data={[
-              {
-                "_id": "l)",
-                "attraction_name": "景点介绍",
-                "attraction_pic": "http://www.qlxcly.com/Public/Upload/RecomPruduct/m_589d32da4792e.jpg",
-                "attraction_star": "★★★★",
-                "attraction_tag": "古城",
-                "attraction_price": 19,
-                "attraction_comments": [
-                  {
-                    "attraction_comment_describe": "果八法发",
-                    "attraction_comment_pic": "https://segmentfault.com/img/bVXki7?w=532&h=335"
-                  }
-                ],
-                "attraction_description": "台儿庄古城"
-              },
-            ]}
-            renderItem={({item}) =>
-              <TouchableOpacity
-                onPress={() => {
-                  NavigationUtil.goPage({theme}, 'AnotherDetailPage')
-                }}
-              >
-                <View style={styles.item}>
-                  <View style={{flexDirection: "row", justifyContent: "space-between"}}>
-                    <View>
-                      <Text style={styles.attraction_name}>{item.attraction_name}</Text>
-                      <View style={{flexDirection: "row", justifyContent: "center", marginTop: 10}}>
-                        <Text style={{fontSize: 16}}>济宁市人民公园建于1962年，是一处借老城墙为山、护城河为水的综合性公园。2004年，人民公园被拆除围墙，设定为开放性公园。拥有55年历史的济宁市人民公园，假山亭台、碧树幽径，无不承载着老济宁人的记忆。随着济宁城区一连串绿地的建成，人民公园不再是城市中具有核心影响力的绿地了。</Text>
-                        {/*<Text style={{marginRight: width/7.1}}>{item.attraction_star}</Text>*/}
-                      </View>
-                      {/*<Text style={{color: "#f55",fontSize: 18,marginTop:10}}>¥{item.attraction_price}</Text>*/}
-                      <View style={{flexDirection: "row", justifyContent: "space-between", marginTop: 10}}>
-                        {/*<Text style={styles.attraction_tag}>{item.attraction_tag}</Text>*/}
+                          <TouchableOpacity
+                            style={styles.order}
+                            onPress={
+                              ()=> {
+                                Alert.alert(
+                                  `预定信息`,
+                                  alertMessage,
+                                  [
+                                    {text: '以后再说', onPress: () => console.log('Ask me later pressed')},
+                                    {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                                    {text: '确定', onPress: () => console.log('OK Pressed')},
+                                  ]
+                                )
+                              }
+                            }
+                          >
+                            <Text style={{color: "#fff",fontSize:16}}>立即预订</Text>
+                          </TouchableOpacity>
+                        </View>
+                        <View style={{flexDirection: "row",  marginTop: 10}}>
+                          <Text style={{fontSize: 16}}>推荐指数：</Text>
+                          <Text style={{marginRight: width/7.1}}>{item.attraction_star}</Text>
+                        </View>
+                        <Text style={{color: "#f55",fontSize: 18,marginTop:10}}>¥{item.attraction_price}</Text>
+                        <View style={{flexDirection: "row", justifyContent: "space-between", marginTop: 10}}>
+                          <Text style={styles.attraction_tag}>{item.attraction_tag}</Text>
+                        </View>
                       </View>
                     </View>
                   </View>
-                </View>
-              </TouchableOpacity>
-            }
-          />
-        </View>
+                </TouchableOpacity>
+              }
+            />
+            <FlatList
+              data={[
+                {
+                  "_id": "l)",
+                  "attraction_name": "购买须知",
+                  "attraction_star": "★★★★",
+                  "attraction_tag": "古城",
+                },
+              ]}
+              renderItem={({item}) =>
+                <TouchableOpacity>
+                  <View style={styles.item}>
+                    <View style={{flexDirection: "row", justifyContent: "space-between"}}>
+                      <View>
+                        <Text style={styles.attraction_name}>{item.attraction_name}</Text>
+                        <View style={{flexDirection: "row",  marginTop: 10}}>
+                          <Text style={{fontSize: 16}}>【产品名称】</Text>
+                          <Text style={{marginRight: width/7.1}}>
+                            济宁邹城世外家园
+                          </Text>
+                        </View>
+                        <View style={{flexDirection: "row",  marginTop: 10}}>
+                          <Text style={{fontSize: 16}}>【采摘品种】</Text>
+                          <Text style={{marginRight: width/7.1}}>
+                            樱桃 5月份 树莓7月份
+                          </Text>
+                        </View>
+                        <View style={{flexDirection: "row",  marginTop: 10}}>
+                          <Text style={{fontSize: 16}}>【景区地址】</Text>
+                          <Text style={{marginRight: width/7.1}}>
+                            济宁邹城张庄镇桑北村
+                          </Text>
+                        </View>
+                        <View style={{flexDirection: "row",  marginTop: 10}}>
+                          <Text style={{fontSize: 16}}>【购买流程】</Text>
+                          <Text style={{marginRight: width/7.1}}>
+                            订购并预留取票人信息→付款并查收入园凭证短信→凭短信取票或验证入园游玩
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              }
+            />
+            <FlatList
+              data={[
+                {
+                  "_id": "l)",
+                  "attraction_name": "活动介绍",
+                  "attraction_pic": "http://www.qlxcly.com/Public/Upload/RecomPruduct/m_589d32da4792e.jpg",
+                  "attraction_star": "★★★★",
+                  "attraction_tag": "古城",
+                  "attraction_price": 19,
+                  "attraction_comments": [
+                    {
+                      "attraction_comment_describe": "果八法发",
+                      "attraction_comment_pic": "https://segmentfault.com/img/bVXki7?w=532&h=335"
+                    }
+                  ],
+                  "attraction_description": "台儿庄古城"
+                },
+              ]}
+              renderItem={({item}) =>
+                <TouchableOpacity
+                  onPress={() => {
+                    NavigationUtil.goPage({theme}, 'AnotherDetailPage')
+                  }}
+                >
+                  <View style={styles.item}>
+                    <View style={{flexDirection: "row", justifyContent: "space-between"}}>
+                      <View>
+                        <Text style={styles.attraction_name}>{item.attraction_name}</Text>
+                        <View style={{flexDirection: "row", justifyContent: "center", marginTop: 10}}>
+                          <Text style={{fontSize: 16}}>
+                            邹城市世外家园饭店位于孟子故里的张庄镇桑北村，该农家乐依水库而建，环境优美，院落整洁，设施齐全，具有浓厚的乡村气息，以儒家传统文化为主题,以乡村礼俗为载体，大力发展孟子故里的农家文化。
+                          </Text>
+                          {/*<Text style={{marginRight: width/7.1}}>{item.attraction_star}</Text>*/}
+                        </View>
+                        {/*<Text style={{color: "#f55",fontSize: 18,marginTop:10}}>¥{item.attraction_price}</Text>*/}
+                        <View style={{flexDirection: "row", justifyContent: "space-between", marginTop: 10}}>
+                          {/*<Text style={styles.attraction_tag}>{item.attraction_tag}</Text>*/}
+                        </View>
+                      </View>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              }
+            />
+          </View>
+        </ScrollView>
+
       </View>
     );
   }
@@ -215,5 +305,19 @@ const styles = StyleSheet.create({
     borderRadius:20,
     color: "#029",
     borderColor: "#029"
+  },
+  title: {
+    flexDirection: "row",
+  },
+  order: {
+    // paddingLeft: 10,
+    lineHeight:35,
+    borderWidth:1,
+    width: 90,
+    height: 30,
+    borderRadius:6,
+    borderColor: "#049",
+    backgroundColor: "#049",
+    alignItems: "center",
   }
 });
