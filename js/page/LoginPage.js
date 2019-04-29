@@ -6,7 +6,7 @@ import NavigationBar from "../common/NavigationBar";
 import NavigationUtil from "../navigator/NavigationUtil";
 
 var width = Dimensions.get('window').width;//得到屏幕宽度
-const TITLE_COLOR = "#678";
+const TITLE_COLOR = "#E96";
 
 export default class LoginPage extends Component{
 
@@ -124,7 +124,7 @@ const LoginStyles = StyleSheet.create({
     height:50,
     borderRadius: 6,//按钮圆角
     alignSelf:'center',
-    backgroundColor:'#678',
+    backgroundColor:TITLE_COLOR,
     marginTop:20,
     justifyContent:'center',
     alignItems:'center'//显示Text组件居中

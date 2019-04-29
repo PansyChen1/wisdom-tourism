@@ -9,7 +9,7 @@ import FavoriteDao from "../expand/dao/FavoriteDao";
 
 const TRENDING_URL = "https://github.com/";
 type Props = {};
-const TITLE_COLOR = "#678"
+const TITLE_COLOR = "#E96"
 export default class DetailPage extends Component<Props> {
   constructor(props) {
     super(props);

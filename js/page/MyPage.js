@@ -9,7 +9,7 @@ import ViewUtil from "../util/ViewUtil";
 import BackPressComponent from "../common/BackPressComponent";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-const THEME_COLOR = "#678";
+const THEME_COLOR = "#E96";
 type Props = {};
 export default class MyPage extends Component<Props> {
   constructor(props) {

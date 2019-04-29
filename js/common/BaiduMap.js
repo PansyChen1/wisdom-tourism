@@ -16,7 +16,7 @@ import ViewUtil from "../util/ViewUtil";
 import BackPressComponent from "./BackPressComponent";
 import NavigationUtil from "../navigator/NavigationUtil";
 const { width,height } = Dimensions.get('window');
-const TITLE_COLOR = "#678";
+const TITLE_COLOR = "#E96";
 
 export default class BaiduMap extends Component {
   constructor(props) {

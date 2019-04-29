@@ -12,7 +12,7 @@ import TrendingItem from "../common/TrendingItem";
 
 const URL = 'https://github.com/trending/';
 const QUERY_STR = "&sort=stars";
-const TITLE_COLOR = "#678";
+const TITLE_COLOR = "#E96";
 
 type Props = {};
 export default class TrendingPage extends Component<Props> {
@@ -53,7 +53,7 @@ export default class TrendingPage extends Component<Props> {
           tabStyle: styles.tabStyle,
           // scrollEnabled: true,//是否支持选项卡滚动
           style: {
-            backgroundColor: '#678' //tabBar的背景色
+            backgroundColor: '#E96' //tabBar的背景色
           },
           indicatorStyle: styles.indicatorStyle,
           labelStyle: styles.labelStyle

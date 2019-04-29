@@ -22,7 +22,7 @@ import ModalDropdown from 'react-native-modal-dropdown';
 import OrderPage from "./OrderPage";
 
 type Props = {};
-const TITLE_COLOR = "#678";
+const TITLE_COLOR = "#E96";
 const width = Dimensions.get('window').width;
 export default class AnotherDetailPage extends Component<Props> {
   constructor(props) {
@@ -303,8 +303,8 @@ const styles = StyleSheet.create({
     width: 60,
     height: 28,
     borderRadius:20,
-    color: "#029",
-    borderColor: "#029"
+    color: "#E96",
+    borderColor: "#E96"
   },
   title: {
     flexDirection: "row",
@@ -316,8 +316,8 @@ const styles = StyleSheet.create({
     width: 90,
     height: 30,
     borderRadius:6,
-    borderColor: "#049",
-    backgroundColor: "#049",
+    borderColor: "#E96",
+    backgroundColor: "#E96",
     alignItems: "center",
   }
 });

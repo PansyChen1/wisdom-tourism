@@ -18,7 +18,7 @@ import ViewUtil from "../util/ViewUtil";
 import BackPressComponent from "../common/BackPressComponent";
 // import {Mock} from "mockjs";
 
-const TITLE_COLOR = "#678";
+const TITLE_COLOR = "#E96";
 const width = Dimensions.get('window').width;
 
 const Props = {};

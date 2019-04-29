@@ -15,7 +15,7 @@ import FavoriteUtil from "../util/FavoriteUtil";
 import Ionicons from "react-native-vector-icons/Ionicons";
 const URL = "https://api.github.com/search/repositories?q=";
 const QUERY_STR = "&sort=stars";
-const TITLE_COLOR = "#678";
+const TITLE_COLOR = "#E96";
 const favoriteDao = new FavoriteDao(FLAG_STORAGE.flag_popular);
 
 type Props = {};
@@ -79,7 +79,7 @@ export default class PopularPage extends Component<Props> {
           tabStyle: styles.tabStyle,
           // scrollEnabled: true,//是否支持选项卡滚动
           style: {
-            backgroundColor: '#678' //tabBar的背景色
+            backgroundColor: '#E96' //tabBar的背景色
           },
           indicatorStyle: styles.indicatorStyle,
           labelStyle: styles.labelStyle

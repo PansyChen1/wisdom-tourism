@@ -18,7 +18,7 @@ import ImagePicker from "react-native-image-picker";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
 type Props = {};
-const TITLE_COLOR = "#678";
+const TITLE_COLOR = "#E96";
 
 const height = Dimensions.get('window').height;
 

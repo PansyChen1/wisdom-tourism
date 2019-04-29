@@ -9,7 +9,7 @@ import ListPage from "./ListPage";
 import {Geolocation} from "react-native-baidu-map";
 //
 // const Geolocation = require('Geolocation');
-const TITLE_COLOR = "#678";
+const TITLE_COLOR = "#E96";
 const width = Dimensions.get('window').width;
 
 export default class FirstPage extends Component {

@@ -10,7 +10,7 @@ import Feather from "react-native-vector-icons/Feather";
 import ModalDropdown from 'react-native-modal-dropdown';
 
 type Props = {};
-const TITLE_COLOR = "#678";
+const TITLE_COLOR = "#E96";
 const width = Dimensions.get('window').width;
 export default class AnotherDetailPage extends Component<Props> {
   constructor(props) {

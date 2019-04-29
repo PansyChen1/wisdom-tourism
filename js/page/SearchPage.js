@@ -19,9 +19,8 @@ import FavoriteUtil from "../util/FavoriteUtil";
 
 const URL = "https://api.github.com/search/repositories?q=";
 const QUERY_STR = "&sort=stars";
-const TITLE_COLOR = "#678";
 const favoriteDao = new FavoriteDao(FLAG_STORAGE.flag_popular);
-const THEME_COLOR = '#678';
+const THEME_COLOR = '#E96';
 const pageSize = 10;
 
 type Props = {};

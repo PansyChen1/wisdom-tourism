@@ -8,7 +8,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import BackPressComponent from "../common/BackPressComponent";
 
-const THEME_COLOR = "#678";
+const THEME_COLOR = "#E96";
 type Props = {};
 var width = Dimensions.get('window').width;//得到屏幕宽度
 export default class RegisterPage extends Component<Props>{
@@ -132,7 +132,7 @@ export default class RegisterPage extends Component<Props>{
                 height:50,
                 borderRadius: 6,//按钮圆角
                 alignSelf:'center',
-                backgroundColor:'#678',
+                backgroundColor:THEME_COLOR,
                 justifyContent:'center',
                 alignItems:'center',
                 marginLeft:10
@@ -185,7 +185,7 @@ const LoginStyles = StyleSheet.create({
     height:50,
     borderRadius: 6,//按钮圆角
     alignSelf:'center',
-    backgroundColor:'#678',
+    backgroundColor:THEME_COLOR,
     marginTop:20,
     justifyContent:'center',
     alignItems:'center'//显示Text组件居中
