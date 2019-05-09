@@ -91,7 +91,7 @@ export default class MyPage extends Component<Props> {
                   color: THEME_COLOR
                 }}
               />
-              <Text>用户名</Text>
+              <Text>昵称</Text>
               <TouchableOpacity
                 onPress={() => {
                   NavigationUtil.goPage({theme}, 'EditInformation')
@@ -111,36 +111,39 @@ export default class MyPage extends Component<Props> {
 
           <View style={GlobalStyles.line}/>
           {this.getItem(MORE_MENU.Tutorial)}
+          <View style={GlobalStyles.line}/>
           {/*趋势管理*/}
-          <Text style={styles.groupTitle}>旅游信息管理</Text>
+          {/*<Text style={styles.groupTitle}>旅游信息管理</Text>*/}
           {/*自定义语言*/}
-          {this.getItem(MORE_MENU.Custom_Language)}
+          {this.getItem(MORE_MENU.Custom_Theme)}
           {/*语言排序*/}
           <View style={GlobalStyles.line}/>
           {this.getItem(MORE_MENU.Sort_Language)}
           {/*标签移除*/}
-          <View style={GlobalStyles.line}/>
-          {this.getItem(MORE_MENU.Remove_Key)}
-          <View style={GlobalStyles.line}/>
-          {this.getItem(MORE_MENU.CodePush)}
-          <View style={GlobalStyles.line}/>
-          {this.getItem(MORE_MENU.About_Author)}
+          {/*<View style={GlobalStyles.line}/>*/}
+          {/*{this.getItem(MORE_MENU.Remove_Key)}*/}
+          {/*<View style={GlobalStyles.line}/>*/}
+          {/*{this.getItem(MORE_MENU.CodePush)}*/}
+          {/*<View style={GlobalStyles.line}/>*/}
+          {/*{this.getItem(MORE_MENU.About_Author)}*/}
 
           {/*最热管理*/}
-          <Text style={styles.groupTitle}>个人管理</Text>
-          {/*自定义标签*/}
-          {this.getItem(MORE_MENU.Custom_Key)}
-          {/*标签排序*/}
-          <View style={GlobalStyles.line}/>
-          {this.getItem(MORE_MENU.Sort_Key)}
+          {/*<Text style={styles.groupTitle}>个人管理</Text>*/}
+          {/*/!*自定义标签*!/*/}
+          {/*{this.getItem(MORE_MENU.Custom_Key)}*/}
+          {/*/!*标签排序*!/*/}
+          {/*<View style={GlobalStyles.line}/>*/}
+          {/*{this.getItem(MORE_MENU.Sort_Key)}*/}
 
           {/*设置*/}
-          <Text style={styles.groupTitle}>设置</Text>
-          {/*自定义主题*/}
-          {this.getItem(MORE_MENU.Custom_Theme)}
-          {/*关于作者*/}
           <View style={GlobalStyles.line}/>
-          {/*反馈*/}
+          {this.getItem(MORE_MENU.Custom_Language)}
+          {/*<Text style={styles.groupTitle}>设置</Text>*/}
+          {/*自定义主题*/}
+          {/*{this.getItem(MORE_MENU.Custom_Theme)}*/}
+          {/*/!*关于作者*!/*/}
+          <View style={GlobalStyles.line}/>
+          {/*/!*反馈*!/*/}
           {this.getItem(MORE_MENU.Feedback)}
         </ScrollView>
       </View>
