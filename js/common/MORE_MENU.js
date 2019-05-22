@@ -11,7 +11,7 @@ export const MORE_MENU = {
   Custom_Key: {name: '自定义标签', Icons: Ionicons, icon: 'md-checkbox-outline'},
   Sort_Key: {name: '离线缓存', Icons: MaterialCommunityIcons, icon: 'sort'},
   Remove_Key: {name: '特产', Icons: Ionicons, icon: 'md-remove'},
-  About_Author: {name: '民俗', Icons: Octicons, icon: 'smiley'},
+  About_Author: {name: '修改个人信息', Icons: MaterialIcons, icon: 'edit'},
   About: {name: '关于', Icons: Ionicons, icon: 'logo-github'},
   Tutorial: {name: '我的订单', Icons: Ionicons, icon: 'ios-bookmarks'},
   Feedback: {name: '退出登录', Icons: MaterialIcons, icon: 'feedback'},

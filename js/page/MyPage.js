@@ -92,22 +92,29 @@ export default class MyPage extends Component<Props> {
                 }}
               />
               <Text>昵称</Text>
-              <TouchableOpacity
-                onPress={() => {
-                  NavigationUtil.goPage({theme}, 'EditInformation')
-                }}
-              >
-                <MaterialIcons
-                  name="edit"
-                  size={30}
-                  style={{
-                    marginLeft: 260,
-                    color: THEME_COLOR
-                  }}
-                />
+              <TouchableOpacity>
+                <View style={[styles.mp10, styles.btn]}>
+                  <Text
+                    onPress={() => {
+                      NavigationUtil.goPage({theme}, 'MerchantPage')
+                    }}
+                    style={styles.btn_text}
+                  >申请成为商家</Text>
+                </View>
+                {/*<MaterialIcons*/}
+                  {/*name="edit"*/}
+                  {/*size={30}*/}
+                  {/*style={{*/}
+                    {/*marginLeft: 260,*/}
+                    {/*color: THEME_COLOR*/}
+                  {/*}}*/}
+                {/*/>*/}
               </TouchableOpacity>
             </View>
           </View>
+
+          <View style={GlobalStyles.line}/>
+          {this.getItem(MORE_MENU.About_Author)}
 
           <View style={GlobalStyles.line}/>
           {this.getItem(MORE_MENU.Tutorial)}
@@ -174,7 +181,24 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     fontSize: 12,
     color: 'gray'
-  }
+  },
+  mp10: {
+    marginTop: 10,
+    fontSize:18,
+    marginLeft:180
+  },
+  btn: {
+    width: 120,
+    height: 40,
+    borderRadius: 10,
+    backgroundColor: '#E96',
+    padding: 5,
+  },
+  btn_text: {
+    lineHeight: 30,
+    textAlign: 'center',
+    color: '#fff',
+  },
 });
 
 // const mapStateToProps = state => ({

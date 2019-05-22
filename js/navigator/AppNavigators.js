@@ -23,6 +23,7 @@ import BaiduMap from "../common/BaiduMap";
 import EditInformation from "../page/EditInformation";
 import ActivityDetailPage from "../page/ActivityDetailPage";
 import OrderPage from "../page/OrderPage";
+import MerchantPage from "../page/MerchantPage";
 
 export const rootCom = "Init"//设置根路由
 
@@ -117,6 +118,12 @@ const MainNavigator = createStackNavigator({
   },
   OrderPage: {
     screen: OrderPage,
+    navigationOptions: {
+      header: null
+    }
+  },
+  MerchantPage: {
+    screen: MerchantPage,
     navigationOptions: {
       header: null
     }
